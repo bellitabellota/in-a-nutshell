@@ -1,4 +1,5 @@
 Rails.application.routes.draw do
+  get "chats/index"
   devise_for :users
   root "chats#index"
 
