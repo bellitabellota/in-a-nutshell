@@ -47,3 +47,5 @@ end
 group :development, :test do
   gem "rspec-rails", "~> 8.0.0"
 end
+
+gem "shakapacker", "= 8.3"
