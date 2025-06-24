@@ -15,7 +15,7 @@ const routes = [{
   path: "/contacts",
   element: <Contacts/>
 }, {
-  path: "/profile",
+  path: "/profile/:profileToken",
   element: <Profile />
 }]
 
