@@ -11,6 +11,10 @@ class User < ApplicationRecord
 
   has_one :profile, dependent: :destroy
 
+  has_many :user_contacts, dependent: :destroy
+  has_many :contacts, through: :user_contacts
+  has_many :inverse_user_contacts, class_name: "UserContact", foreign_key: "contact_id", dependent: :destroy
+
   private
 
   def create_profile
