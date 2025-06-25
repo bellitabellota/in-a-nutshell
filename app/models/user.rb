@@ -15,6 +15,9 @@ class User < ApplicationRecord
   has_many :contacts, through: :user_contacts
   has_many :inverse_user_contacts, class_name: "UserContact", foreign_key: "contact_id", dependent: :destroy
 
+  has_many :chats_as_user_a, class_name: "Chat", foreign_key: "user_a_id", dependent: :destroy
+  has_many :chats_as_user_b, class_name: "Chat", foreign_key: "user_b_id", dependent: :destroy
+
   private
 
   def create_profile

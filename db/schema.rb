@@ -10,9 +10,18 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_25_113400) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_25_134305) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "chats", force: :cascade do |t|
+    t.bigint "user_a_id", null: false
+    t.bigint "user_b_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["user_a_id"], name: "index_chats_on_user_a_id"
+    t.index ["user_b_id"], name: "index_chats_on_user_b_id"
+  end
 
   create_table "profiles", force: :cascade do |t|
     t.string "name"
@@ -46,6 +55,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_25_113400) do
     t.index ["reset_password_token"], name: "index_users_on_reset_password_token", unique: true
   end
 
+  add_foreign_key "chats", "users", column: "user_a_id"
+  add_foreign_key "chats", "users", column: "user_b_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "user_contacts", "users"
   add_foreign_key "user_contacts", "users", column: "contact_id"
