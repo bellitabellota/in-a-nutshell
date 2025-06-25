@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import CurrentUserProfileContext from "./CurrentUserProfileContext";
+import CurrentUserProfileContext from "../CurrentUserProfileContext";
 
 function NavBar() {
   const currentUserProfile = useContext(CurrentUserProfileContext);
