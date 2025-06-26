@@ -4,6 +4,8 @@ class Chat < ApplicationRecord
   belongs_to :user_a, class_name: "User"
   belongs_to :user_b, class_name: "User"
 
+  has_many :messages, dependent: :destroy
+
   private
 
   def sort_user_ids

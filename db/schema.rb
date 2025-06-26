@@ -10,7 +10,7 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema[7.2].define(version: 2025_06_26_084611) do
+ActiveRecord::Schema[7.2].define(version: 2025_06_26_091425) do
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
 
@@ -21,6 +21,15 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_26_084611) do
     t.datetime "updated_at", null: false
     t.index ["user_a_id"], name: "index_chats_on_user_a_id"
     t.index ["user_b_id"], name: "index_chats_on_user_b_id"
+  end
+
+  create_table "messages", force: :cascade do |t|
+    t.bigint "chat_id", null: false
+    t.bigint "author_id", null: false
+    t.datetime "created_at", null: false
+    t.datetime "updated_at", null: false
+    t.index ["author_id"], name: "index_messages_on_author_id"
+    t.index ["chat_id"], name: "index_messages_on_chat_id"
   end
 
   create_table "profiles", force: :cascade do |t|
@@ -59,6 +68,8 @@ ActiveRecord::Schema[7.2].define(version: 2025_06_26_084611) do
 
   add_foreign_key "chats", "users", column: "user_a_id"
   add_foreign_key "chats", "users", column: "user_b_id"
+  add_foreign_key "messages", "chats"
+  add_foreign_key "messages", "users", column: "author_id"
   add_foreign_key "profiles", "users"
   add_foreign_key "user_contacts", "users"
   add_foreign_key "user_contacts", "users", column: "contact_id"

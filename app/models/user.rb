@@ -18,6 +18,8 @@ class User < ApplicationRecord
   has_many :chats_as_user_a, class_name: "Chat", foreign_key: "user_a_id", dependent: :destroy
   has_many :chats_as_user_b, class_name: "Chat", foreign_key: "user_b_id", dependent: :destroy
 
+  has_many :messages, inverse_of: "author", dependent: :destroy
+
   def chats
     Chat.where("user_a_id = ? OR user_b_id = ?", id, id)
   end
