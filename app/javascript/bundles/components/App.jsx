@@ -1,16 +1,16 @@
 
 import routes from "../routes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CurrentUserProfileContext from "../CurrentUserProfileContext";
+import CurrentUserContext from "../CurrentUserContext";
 
 const router = createBrowserRouter(routes);
 
 
-function App({currentUserProfile}) {
+function App(currentUser) {
   return (
-    <CurrentUserProfileContext.Provider value={currentUserProfile}>
+    <CurrentUserContext.Provider value={currentUser}>
       <RouterProvider router={router} />
-    </CurrentUserProfileContext.Provider>
+    </CurrentUserContext.Provider>
   )
 }
 

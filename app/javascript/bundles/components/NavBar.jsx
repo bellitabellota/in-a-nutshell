@@ -1,14 +1,14 @@
 import { Link } from "react-router-dom";
 import { useContext } from "react";
-import CurrentUserProfileContext from "../CurrentUserProfileContext";
+import CurrentUserContext from "../CurrentUserContext";
 
 function NavBar() {
-  const currentUserProfile = useContext(CurrentUserProfileContext);
+  const currentUser = useContext(CurrentUserContext);
   return(
     <div>
       <Link to="/">Chats</Link>
       <Link to="/contacts">Contacts</Link>
-      <Link to={`/profile/${currentUserProfile.connectToken}`}>My Profile</Link>
+      <Link to={`/profile/${currentUser.profile.connectToken}`}>My Profile</Link>
     </div>
   )
 }
