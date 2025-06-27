@@ -8,7 +8,7 @@ const routes = [{
   path: "/",
   element: <ChatList />
 }, {
-  path: "/:chatId",
+  path: "/chats/:chatId",
   element: <Chat />
 },
 {
