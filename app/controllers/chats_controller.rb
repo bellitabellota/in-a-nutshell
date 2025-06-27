@@ -4,13 +4,18 @@ class ChatsController < ApplicationController
     contacts = User.includes(:profile).where(id: contact_ids)
 
     contact_profiles = contacts.map do |contact|
+      user_ids = [current_user.id, contact.id].sort
+
+      chat = Chat.find_by(user_a_id: user_ids[0], user_b_id: user_ids[1])
+      
       {
         id: contact.id,
         profile: {
           name: contact.profile.name,
           info: contact.profile.info,
           connectToken: contact.profile.connect_token
-        }
+        },
+        chatId: chat.id
       }
     end
 
