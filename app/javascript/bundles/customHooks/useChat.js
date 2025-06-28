@@ -6,7 +6,7 @@ const useChat = (paramsChatId) => {
   const [isLoading, setIsLoading] = useState(true);
 
   useEffect(() => {
-    const url = `/chats/${paramsChatId}`;
+    const url = `/api/v1/chats/${paramsChatId}`;
 
     fetch(url)
     .then((response) =>{

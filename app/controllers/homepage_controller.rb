@@ -1,4 +1,4 @@
-class ChatsController < ApplicationController
+class HomepageController < ApplicationController
   def index
     contact_ids = current_user.contacts.pluck(:id)
     contacts = User.includes(:profile).where(id: contact_ids)
@@ -27,19 +27,5 @@ class ChatsController < ApplicationController
       },
       contacts: contact_profiles
     }
-  end
-
-  def show
-    chat = Chat.find(params[:id])
-
-    messages = chat.messages.map do |message|
-      { id: message.id,
-        author: message.author_id,
-        creationDate: message.created_at,
-        contentBody: message.content.body
-      }
-    end
-
-    render json: messages
   end
 end

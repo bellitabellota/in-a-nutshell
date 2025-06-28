@@ -1,7 +1,14 @@
 Rails.application.routes.draw do
   devise_for :users
-  root "chats#index"
-  resources :chats, only: [:index, :show]
+  root "homepage#index"
+
+  namespace :api do
+    namespace :v1 do
+      resources :chats, only: [:show]
+    end
+  end
+
+    get "/*path", to: "homepage#index"
 
   get "hello_world", to: "hello_world#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
@@ -13,9 +20,4 @@ Rails.application.routes.draw do
   # Render dynamic PWA files from app/views/pwa/*
   get "service-worker" => "rails/pwa#service_worker", as: :pwa_service_worker
   get "manifest" => "rails/pwa#manifest", as: :pwa_manifest
-
-  # Defines the root path route ("/")
-  # root "posts#index"
-
-  get "/*path", to: "chats#index"
 end
