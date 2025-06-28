@@ -1,7 +1,7 @@
 Rails.application.routes.draw do
-  get "chats/index"
   devise_for :users
   root "chats#index"
+  resources :chats, only: [:index, :show]
 
   get "hello_world", to: "hello_world#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
