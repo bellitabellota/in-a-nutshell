@@ -2,12 +2,14 @@ import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import useChat from "../customHooks/useChat";
 import { CableContext } from "./contexts/cable";
-import { useContext, useEffect } from "react";
+import { useContext, useEffect, useRef, useState } from "react";
 
 function Chat() {
   const params = useParams();
   const { messagesInChat, error, isLoading } = useChat(params.chatId)
 
+  const inputField = useRef();
+  const [newMessage, setNewMessage] = useState();
 
   const cableContext = useContext(CableContext);
 
@@ -29,6 +31,11 @@ function Chat() {
       }
     });
   }, [])
+
+  function sendMessageHandler (event) {
+    event.preventDefault();
+    setNewMessage(inputField.current.value)
+  }
   
 
   const messages = messagesInChat.map((message) => {
@@ -51,8 +58,8 @@ function Chat() {
 
       <div id="message-form">
         <form action="" id="message-form">
-          <input id="message-input" type="text" />
-          <input type="submit" value="Send Message" />
+          <input id="message-input" type="text" ref={inputField}/>
+          <input type="submit" value="Send Message" onClick={sendMessageHandler} />
         </form>
       </div>
     </div>
