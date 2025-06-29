@@ -4,11 +4,13 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :chats, only: [:show]
+      resources :chats, only: [:show] do
+        resources :messages, only: [:create]
+      end
     end
   end
 
-    get "/*path", to: "homepage#index"
+  get "/*path", to: "homepage#index"
 
   mount ActionCable.server => '/cable'
 
