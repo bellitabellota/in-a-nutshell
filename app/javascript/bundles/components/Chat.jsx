@@ -32,11 +32,29 @@ function Chat() {
     });
   }, [])
 
+
+
+  useEffect(()=> {
+    if (!newMessage) return
+    const url = `/api/v1/chats/${params.chatId}/messages`
+    const token = document.querySelector('meta[name="csrf-token').content
+    const body = {content: newMessage}
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": token
+      }, 
+      body: JSON.stringify(body)
+    })
+    setNewMessage(null);
+  }, [newMessage])
+
   function sendMessageHandler (event) {
     event.preventDefault();
     setNewMessage(inputField.current.value)
   }
-  
 
   const messages = messagesInChat.map((message) => {
     return (<div key={message.id}>
