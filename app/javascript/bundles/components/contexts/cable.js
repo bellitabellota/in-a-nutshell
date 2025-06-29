@@ -7,7 +7,7 @@ function CableProvider({ children }) {
   const actionCableUrl = 'ws://localhost:3000/cable';
 
   const CableApp = {
-    cable: ActionCable.createConsumer(actionCableUrl)
+    consumer: ActionCable.createConsumer(actionCableUrl)
   };
   
 
