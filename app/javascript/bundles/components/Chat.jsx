@@ -6,7 +6,8 @@ import { useContext, useEffect, useRef, useState } from "react";
 
 function Chat() {
   const params = useParams();
-  const { messagesInChat, error, isLoading } = useChat(params.chatId)
+  const [messagesInChat, setMessagesInChat] = useState([]);
+  const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
 
   const inputField = useRef();
   const [newMessage, setNewMessage] = useState();
@@ -14,8 +15,6 @@ function Chat() {
   const cableContext = useContext(CableContext);
 
   useEffect(()=> {
-    
-
     const newChannel = cableContext.consumer.subscriptions.create( {channel: "ChatChannel", chat_id: params.chatId}, {
       connected() {
 
@@ -25,9 +24,12 @@ function Chat() {
       },
       received(data) {
         //Called when there's incoming data on the websocket for this channel
-        //A typical use for this callback would be to update state in some fashion to render real-time information in the browser.
-        console.log("Data received in the received callback of the frontend subscription")
-        console.log(data)
+
+        setMessagesInChat((prevMessagesInChat) => [...prevMessagesInChat, { id: data.id,
+          author: data.author_id,
+          creationDate: data.created_at,
+          contentBody: data.content.body
+        }])  
       }
     });
   }, [])
