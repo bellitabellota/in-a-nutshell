@@ -1,7 +1,6 @@
-import {useState, useEffect} from "react";
+import { useEffect, useState } from "react";
 
-const useChat = (paramsChatId) => {
-  const [messagesInChat, setMessagesInChat] = useState([]);
+const useChat = (paramsChatId, setMessagesInChat) => {
   const [error, setError] = useState(null);
   const [isLoading, setIsLoading] = useState(true);
 
@@ -23,7 +22,7 @@ const useChat = (paramsChatId) => {
     })
   }, [])
 
-  return { messagesInChat, error, isLoading }
+  return { error, isLoading }
 }
 
 export default useChat;
