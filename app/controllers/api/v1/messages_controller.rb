@@ -5,6 +5,6 @@ class Api::V1::MessagesController < ApplicationController
 
     message.save
 
-    ChatChannel.broadcast_to(chat, message)
+    ChatChannel.broadcast_to(chat, message.as_json(include: :content))
   end
 end
