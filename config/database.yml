@@ -80,6 +80,7 @@ test:
 #
 production:
   <<: *default
+  url: <% ENV['DATABASE_URL'] %>
   database: in_a_nutshell_production
   username: in_a_nutshell
   password: <%= ENV["IN_A_NUTSHELL_DATABASE_PASSWORD"] %>
