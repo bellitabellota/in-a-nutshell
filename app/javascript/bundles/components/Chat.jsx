@@ -17,10 +17,10 @@ function Chat() {
   useEffect(()=> {
     const newChannel = cableContext.consumer.subscriptions.create( {channel: "ChatChannel", chat_id: params.chatId}, {
       connected() {
-
+        console.log("connected")
       },
       disconnected() {
-
+        console.log("disconnected")
       },
       received(data) {
         //Called when there's incoming data on the websocket for this channel
