@@ -29,12 +29,17 @@ function Chat() {
           author: data.author_id,
           creationDate: data.created_at,
           contentBody: data.content.body
-        }])  
+        }])
       }
     });
+
+    return () => {
+      // https://medium.com/@stacileep2/rails-action-cable-with-react-basic-chatroom-set-up-56f08a8e47aa
+      newChannel.unsubscribe();
+      console.log("unsubscribed");
+    };
+    
   }, [])
-
-
 
   useEffect(()=> {
     if (!newMessage) return
