@@ -5,6 +5,10 @@ class Api::V1::MessagesController < ApplicationController
 
     message.save
 
-    ChatChannel.broadcast_to(chat, message.as_json(include: :content))
+    ChatChannel.broadcast_to(chat, { id: message.id,
+      author: message.author_id,
+      creationDate: message.created_at,
+      contentBody: message.content.body.to_s # converts the ActionText::Content to HTML
+    })
   end
 end

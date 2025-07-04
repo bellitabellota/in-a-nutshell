@@ -27,11 +27,7 @@ function Chat() {
       received(data) {
         //Called when there's incoming data on the websocket for this channel
 
-        setMessagesInChat((prevMessagesInChat) => [...prevMessagesInChat, { id: data.id,
-          author: data.author_id,
-          creationDate: data.created_at,
-          contentBody: data.content.body
-        }])
+        setMessagesInChat((prevMessagesInChat) => [...prevMessagesInChat, data])
       }
     });
 
@@ -70,8 +66,11 @@ function Chat() {
   }
 
   const messages = messagesInChat.map((message) => {
+    // ActionText & Sanitization:
+    // https://github.com/rails/actiontext/issues/13
+    // https://github.com/rails/actiontext/issues/6
     return (<div key={message.id}>
-      <p>{ message.contentBody }</p>
+      <div dangerouslySetInnerHTML={{ __html: message.contentBody }} />
       <p>{ message.creationDate }</p>
     </div>)
   })

@@ -6,7 +6,7 @@ class Api::V1::ChatsController < ApplicationController
       { id: message.id,
         author: message.author_id,
         creationDate: message.created_at,
-        contentBody: message.content.body
+        contentBody: message.content.body.to_s # converts the ActionText::Content to HTML
       }
     end
 
