@@ -1,6 +1,6 @@
 import NavBar from "./NavBar";
 import { useContext } from "react";
-import CurrentUserContext from "../CurrentUserContext";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 
 function ChatList() {

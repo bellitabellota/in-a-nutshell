@@ -1,7 +1,7 @@
 
 import routes from "../routes";
 import { createBrowserRouter, RouterProvider } from "react-router-dom";
-import CurrentUserContext from "../CurrentUserContext";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 import { CableProvider } from "./contexts/cable";
 
 const router = createBrowserRouter(routes);
