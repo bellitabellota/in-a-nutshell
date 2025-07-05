@@ -5,37 +5,17 @@ import { CableContext } from "./contexts/cable";
 import { useContext, useEffect, useRef, useState } from "react";
 import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
+import useChatChannel from "../customHooks/useChatChannel";
 
 function Chat() {
   const params = useParams();
   const [messagesInChat, setMessagesInChat] = useState([]);
-  const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
   const trixRef = useRef();
   const [newMessage, setNewMessage] = useState();
-  const cableContext = useContext(CableContext);
 
-  useEffect(()=> {
-    const newChannel = cableContext.consumer.subscriptions.create( {channel: "ChatChannel", chat_id: params.chatId}, {
-      connected() {
-        console.log("connected")
-      },
-      disconnected() {
-        console.log("disconnected")
-      },
-      received(data) {
-        //Called when there's incoming data on the websocket for this channel
+  const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
 
-        setMessagesInChat((prevMessagesInChat) => [...prevMessagesInChat, data])
-      }
-    });
-
-    return () => {
-      // https://medium.com/@stacileep2/rails-action-cable-with-react-basic-chatroom-set-up-56f08a8e47aa
-      newChannel.unsubscribe();
-      console.log("unsubscribed");
-    };
-    
-  }, [])
+  useChatChannel(params.chatId, setMessagesInChat)
 
   useEffect(()=> {
     if (!newMessage) return
