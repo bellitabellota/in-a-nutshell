@@ -10,10 +10,8 @@ function Chat() {
   const params = useParams();
   const [messagesInChat, setMessagesInChat] = useState([]);
   const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
-  const [trixValue, setTrixValue] = useState("");
-
+  const trixRef = useRef();
   const [newMessage, setNewMessage] = useState();
-
   const cableContext = useContext(CableContext);
 
   useEffect(()=> {
@@ -54,15 +52,13 @@ function Chat() {
       body: JSON.stringify(body)
     })
     setNewMessage(null);
-  }, [newMessage])
+    trixRef.current.editor.element.innerHTML = "";
 
-  function handleChange(event, newValue) {
-    setTrixValue(newValue);
-  }
+  }, [newMessage])
 
   function sendMessageHandler (event) {
     event.preventDefault();
-    setNewMessage(trixValue)
+    setNewMessage(trixRef.current.editor.element.innerHTML)
   }
 
   const messages = messagesInChat.map((message) => {
@@ -88,7 +84,7 @@ function Chat() {
 
       <div id="message-form">
         <form action="" id="message-form">
-          <ReactTrixRTEInput onChange={handleChange} isRailsDirectUpload={true} />
+          <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
           <input type="submit" value="Send Message" onClick={sendMessageHandler} />
         </form>
       </div>
