@@ -4,15 +4,17 @@ Rails.application.routes.draw do
 
   namespace :api do
     namespace :v1 do
-      resources :chats, only: [:show] do
-        resources :messages, only: [:create]
+      resources :chats, only: [ :show ] do
+        resources :messages, only: [ :create ]
       end
     end
   end
 
-  get "/*path", to: "homepage#index"
+  # https://stackoverflow.com/questions/71141040/actioncontrollerunknownformat-with-image-http-accept-ruby-on-rails?utm_source=chatgpt.com
+  # https://guides.rubyonrails.org/v7.2/routing.html
+  get "/*path", to: "homepage#index", constraints: lambda { |req| req.format == :html }
 
-  mount ActionCable.server => '/cable'
+  mount ActionCable.server => "/cable"
 
   get "hello_world", to: "hello_world#index"
   # Define your application routes per the DSL in https://guides.rubyonrails.org/routing.html
