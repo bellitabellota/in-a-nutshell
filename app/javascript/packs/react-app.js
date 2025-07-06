@@ -1,5 +1,8 @@
 import ReactOnRails from 'react-on-rails/client';
 import App from '../bundles/components/App';
+
+import "../stylesheets/global.css"
+
 import "trix"
 import "@rails/actiontext"
 

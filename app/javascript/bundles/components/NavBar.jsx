@@ -5,11 +5,11 @@ import CurrentUserContext from "./contexts/CurrentUserContext";
 function NavBar() {
   const currentUser = useContext(CurrentUserContext);
   return(
-    <div>
+    <nav>
       <Link to="/">Chats</Link>
       <Link to="/contacts">Contacts</Link>
       <Link to={`/profile/${currentUser.profile.connectToken}`}>My Profile</Link>
-    </div>
+    </nav>
   )
 }
 

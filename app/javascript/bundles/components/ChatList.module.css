@@ -1,0 +1,26 @@
+.contactContainer {
+  border-radius: 5px;
+  color: black; /*decide for link style */
+  display: flex;
+  gap: 15px;
+  padding: 10px;
+  align-items: center;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+}
+
+.contactList{
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  padding: 10px;
+}
+
+.profilePicture{
+  width: calc(30px + 1vw);
+  aspect-ratio: 1/1;
+  border-radius: 30px; 
+}
+
+.contactName{
+  flex: 1;
+}

@@ -1,0 +1,72 @@
+/* CSS reset - based on https://mattbrictson.com/blog/css-normalize-and-reset */
+@import url("modern-normalize/modern-normalize.css");
+
+:root {
+  line-height: 1.5;
+}
+
+h1, h2, h3, h4, h5, figure, p, ol, ul {
+  margin: 0;
+}
+
+ol[role="list"], ul[role="list"] {
+  list-style: none;
+  padding-inline: 0;
+}
+
+h1, h2, h3, h4, h5 {
+  font-size: inherit;
+  font-weight: inherit;
+}
+
+img {
+  display: block;
+  max-inline-size: 100%;
+}
+
+/* Global styles*/
+body {
+ background-color: rgb(255, 252, 234);
+}
+
+.app-container {
+  margin-left: auto;
+  margin-right: auto;
+  width: fit-content;
+  padding-top: 5vh; 
+}
+
+.app-container > .horizontal-logo{
+  width: 22.5vw;
+}
+
+main {
+  background-color: white;
+  border-top: calc(2px + 0.15vw) solid rgb(234,151,31);
+  border-right: calc(2px + 0.15vw) solid rgb(234,151,31);
+  border-left: calc(2px + 0.15vw) solid rgb(234,151,31);
+
+  border-top-right-radius: 10px;
+  border-top-left-radius: 10px;
+  width: 75vw;
+  height: 75vh;
+}
+
+nav {
+  display:flex;
+  padding: 15px 10px 0 10px;
+  gap:7px;
+}
+
+nav > * {
+  text-align: center;
+  border-top-right-radius: 15px;
+  background-color: rgb(248, 171, 63);
+  color: black;
+  text-decoration: none;
+  padding: 4px 15px;
+}
+
+nav > *:hover {
+  background-color:  rgb(253, 189, 100);
+}
