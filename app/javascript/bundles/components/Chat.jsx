@@ -7,6 +7,9 @@ import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
 import useChatChannel from "../customHooks/useChatChannel";
 import useSendMessage from "../customHooks/useSendMessage";
+import * as styles from "./Chat.module.css";
+import CurrentUserContext from "./contexts/CurrentUserContext";
+import formatDate from "../helpers/formatDate";
 
 function Chat() {
   const params = useParams();
@@ -24,13 +27,18 @@ function Chat() {
     setNewMessage(trixRef.current.editor.element.innerHTML)
   }
 
+  const currentUser = useContext(CurrentUserContext);
+
   const messages = messagesInChat.map((message) => {
+    const isCurrentUser = message.author == currentUser.id;
+    const messageClass = isCurrentUser ? styles.messageCurrentUser : styles.messageContact;
+
     // ActionText & Sanitization:
     // https://github.com/rails/actiontext/issues/13
     // https://github.com/rails/actiontext/issues/6
-    return (<div key={message.id}>
+    return (<div key={message.id} className={`${styles.message} ${messageClass}`}>
       <div dangerouslySetInnerHTML={{ __html: message.contentBody }} />
-      <p>{ message.creationDate }</p>
+      <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
   })
 
@@ -38,26 +46,28 @@ function Chat() {
   if(error) return <p>{error.message}</p>;
 
   return (
-    <>
-    <h1>Chat component with id {params.chatId}</h1>
-    <div>
-      <div id="message-display">
-        {messages}
-      </div>
-
-      <div id="message-form">
-        <form action="" id="message-form">
-          <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
-          <input type="submit" value="Send Message" onClick={sendMessageHandler} />
-        </form>
-      </div>
-
+    <main className={styles.mainChat}>
+      <NavBar />
       
-    </div>
-    <NavBar />
-    </>
+      <div className={styles.chatContainer}>
+
+        <div className={styles.messageDisplay}>
+          {messages}
+        </div>
+
+        <div id="message-form">
+          <form action="" id="message-form">
+            <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
+            <input type="submit" value="Send Message" onClick={sendMessageHandler} />
+          </form>
+        </div>
+
+        
+      </div>
+    </main>
     
   )
 }
 
 export default Chat;
+
