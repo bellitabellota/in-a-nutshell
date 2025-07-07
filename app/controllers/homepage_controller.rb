@@ -4,10 +4,10 @@ class HomepageController < ApplicationController
     contacts = User.includes(:profile).where(id: contact_ids)
 
     contact_profiles = contacts.map do |contact|
-      user_ids = [current_user.id, contact.id].sort
+      user_ids = [ current_user.id, contact.id ].sort
 
       chat = Chat.find_by(user_a_id: user_ids[0], user_b_id: user_ids[1])
-      
+
       {
         id: contact.id,
         profile: {
@@ -20,6 +20,7 @@ class HomepageController < ApplicationController
     end
 
     @react_props = {
+      id: current_user.id,
       profile: {
         name: current_user.profile.name,
         info: current_user.profile.info,
