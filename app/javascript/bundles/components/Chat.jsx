@@ -19,7 +19,7 @@ function Chat() {
   const trixRef = useRef();
   const [newMessage, setNewMessage] = useState();
 
-  const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
+  const {error, isLoading } = useChat(params.chatId, setMessagesInChat)
 
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
@@ -46,27 +46,36 @@ function Chat() {
     </div>)
   })
 
-  if(isLoading) return <p>Chat is loading ...</p>
-  if(error) return <p>{error.message}</p>;
+  const [listExpanded, setListExpanded] = useState(true);
+
+  useEffect(() => {
+    if (isDesktop) {
+      const timer = setTimeout(() => setListExpanded(false), 250);
+      return () => clearTimeout(timer);
+    }
+  }, [isDesktop]);
 
   return (
     <main className={styles.mainChat}>
       <NavBar />
 
       <div className={styles.desktopScreen}>
-        {isDesktop && <ContactList />}
-        
-        <div className={styles.chatContainer}>
-          <div className={styles.messageDisplay}>
-            {messages}
+        {isDesktop && (
+          <div className={`${styles.listContainer} ${listExpanded ? styles.listContainerExpanded : ""}`}>
+            <ContactList />
           </div>
-          <div id="message-form">
+        )}
+        
+        <div className={`${styles.chatContainer} ${(isDesktop && listExpanded) ? styles.chatContainerNone : ""}`}>
+          <div className={styles.messageDisplay}>
+            { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
+          </div>
+          <div className={styles.messageFormContainer}>
             <form action="" id="message-form">
               <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
               <input type="submit" value="Send Message" onClick={sendMessageHandler} />
             </form>
           </div>
-        
         </div>
       </div>
     </main>
