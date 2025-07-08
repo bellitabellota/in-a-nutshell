@@ -10,6 +10,8 @@ import useSendMessage from "../customHooks/useSendMessage";
 import * as styles from "./Chat.module.css";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import formatDate from "../helpers/formatDate";
+import { useMediaQuery } from "react-responsive";
+import ContactList from "./ContactList";
 
 function Chat() {
   const params = useParams();
@@ -18,6 +20,8 @@ function Chat() {
   const [newMessage, setNewMessage] = useState();
 
   const { error, isLoading } = useChat(params.chatId, setMessagesInChat)
+
+  const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   useChatChannel(params.chatId, setMessagesInChat)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
@@ -48,21 +52,22 @@ function Chat() {
   return (
     <main className={styles.mainChat}>
       <NavBar />
-      
-      <div className={styles.chatContainer}>
 
-        <div className={styles.messageDisplay}>
-          {messages}
-        </div>
-
-        <div id="message-form">
-          <form action="" id="message-form">
-            <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
-            <input type="submit" value="Send Message" onClick={sendMessageHandler} />
-          </form>
-        </div>
-
+      <div className={styles.desktopScreen}>
+        {isDesktop && <ContactList />}
         
+        <div className={styles.chatContainer}>
+          <div className={styles.messageDisplay}>
+            {messages}
+          </div>
+          <div id="message-form">
+            <form action="" id="message-form">
+              <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
+              <input type="submit" value="Send Message" onClick={sendMessageHandler} />
+            </form>
+          </div>
+        
+        </div>
       </div>
     </main>
     

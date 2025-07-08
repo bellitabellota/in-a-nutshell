@@ -3,6 +3,12 @@
   flex-direction: column;
 }
 
+.desktopScreen {
+  display: flex;
+  height: 100%;
+  overflow: hidden;
+}
+
 .chatContainer{
   padding: 10px;
   flex: 1;
