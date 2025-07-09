@@ -35,7 +35,7 @@ function Chat() {
   const currentUser = useContext(CurrentUserContext);
 
   const messages = messagesInChat.map((message) => {
-    const isCurrentUser = message.author == currentUser.id;
+    const isCurrentUser = message.author === currentUser.id;
     const messageClass = isCurrentUser ? styles.messageCurrentUser : styles.messageContact;
 
     // ActionText & Sanitization:
