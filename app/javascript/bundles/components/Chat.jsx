@@ -12,6 +12,7 @@ import CurrentUserContext from "./contexts/CurrentUserContext";
 import formatDate from "../helpers/formatDate";
 import { useMediaQuery } from "react-responsive";
 import ContactList from "./ContactList";
+import SendIcon from "../../images/send_icon.svg"
 
 function Chat() {
   const params = useParams();
@@ -73,9 +74,13 @@ function Chat() {
             { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
           </div>
           <div className={styles.messageFormContainer}>
-            <form action="" id="message-form">
-              <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
-              <input type="submit" value="Send Message" onClick={sendMessageHandler} />
+            <form action="" className={styles.messageForm}>
+              <div className={styles.trixContainer}>
+                <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
+              </div>
+              <button type="submit" className={styles.sendButton} onClick={sendMessageHandler}>
+                <img src={SendIcon} alt="Send" />
+              </button>
             </form>
           </div>
         </div>

@@ -92,5 +92,41 @@
 }
 
 .messageFormContainer{
-  margin: 0 10px 10px 10px;
+  margin: 10px 10px 10px 10px;
+}
+
+.messageForm {
+  width: 100%;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+
+.trixContainer{
+  flex:1;
+  min-width: 0;
+}
+
+.sendButton{
+  border-radius: 2rem;
+  padding: 0.75rem;
+  border:none;
+  background-color: rgb(252, 174, 65);
+  box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.15s;
+}
+
+.sendButton:hover {
+  background-color: rgb(234,151,31);
+}
+
+.sendButton:active {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.2);
+}
+
+.sendButton img{
+  width: 1.25rem;
+  height: 1.25rem;
 }
