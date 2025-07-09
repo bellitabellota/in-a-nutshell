@@ -6,6 +6,7 @@ import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 
 function ContactList() {
   const currentUser = useContext(CurrentUserContext);
+  console.log(currentUser.contacts[0].chatId);
   return (
     <div className={styles.contactList}>
       {currentUser.contacts.map((contact) => (

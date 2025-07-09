@@ -20,7 +20,7 @@ const useChat = (paramsChatId, setMessagesInChat) => {
     .finally(() => {
       setIsLoading(false);
     })
-  }, [])
+  }, [paramsChatId])
 
   return { error, isLoading }
 }

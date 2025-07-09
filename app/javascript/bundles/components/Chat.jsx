@@ -47,12 +47,14 @@ function Chat() {
   })
 
   const [listExpanded, setListExpanded] = useState(true);
-
+  const isFirstLoadRef = useRef(true);
   useEffect(() => {
-    if (isDesktop) {
-      const timer = setTimeout(() => setListExpanded(false), 250);
-      return () => clearTimeout(timer);
-    }
+    if(!isDesktop) return;
+    if(!isFirstLoadRef.current) return;
+
+    isFirstLoadRef.current = false;
+    const timer = setTimeout(() => setListExpanded(false), 250);
+    return () => clearTimeout(timer);
   }, [isDesktop]);
 
   return (

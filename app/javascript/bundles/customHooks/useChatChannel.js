@@ -25,7 +25,7 @@ const useChatChannel = (paramsChatId, setMessagesInChat) => {
       newChannel.unsubscribe();
       console.log("unsubscribed");
     };
-  }, [])
+  }, [paramsChatId])
 }
 
 export default useChatChannel;
