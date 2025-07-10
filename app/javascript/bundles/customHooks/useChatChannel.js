@@ -1,7 +1,7 @@
 import { useEffect, useContext } from "react";
 import { CableContext } from "../components/contexts/cable";
 
-const useChatChannel = (paramsChatId, setMessagesInChat) => {
+const useChatChannel = (paramsChatId, setMessagesInChat, setContacts) => {
 
   const cableContext = useContext(CableContext);
 
@@ -17,6 +17,13 @@ const useChatChannel = (paramsChatId, setMessagesInChat) => {
         //Called when there's incoming data on the websocket for this channel
 
         setMessagesInChat((prevMessagesInChat) => [...prevMessagesInChat, data])
+
+        const chatId = Number(paramsChatId);
+          setContacts((prevContacts) =>
+            prevContacts.map((contact) =>
+              contact.chatId === chatId ? { ...contact, lastActivity: data.creationDate } : contact
+            )
+          );
       }
     });
 

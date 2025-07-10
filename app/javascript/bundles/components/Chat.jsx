@@ -13,6 +13,7 @@ import formatDate from "../helpers/formatDate";
 import { useMediaQuery } from "react-responsive";
 import ContactList from "./ContactList";
 import SendIcon from "../../images/send_icon.svg"
+import ContactsContext from "./contexts/ContactsContext";
 
 function Chat() {
   const params = useParams();
@@ -20,11 +21,14 @@ function Chat() {
   const trixRef = useRef();
   const [newMessage, setNewMessage] = useState();
 
+  const currentUser = useContext(CurrentUserContext);
+  const { contacts, setContacts } = useContext(ContactsContext);
+
   const {error, isLoading } = useChat(params.chatId, setMessagesInChat)
 
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
-  useChatChannel(params.chatId, setMessagesInChat)
+  useChatChannel(params.chatId, setMessagesInChat, setContacts)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
 
   function sendMessageHandler (event) {
@@ -32,7 +36,6 @@ function Chat() {
     setNewMessage(trixRef.current.editor.element.innerHTML)
   }
 
-  const currentUser = useContext(CurrentUserContext);
   function stripHtmlComments(htmlString) {
     return htmlString.replace(/<!--[\s\S]*?-->/g, '');
   }
