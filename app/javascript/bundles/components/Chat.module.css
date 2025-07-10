@@ -127,7 +127,7 @@
 }
 
 .sendButton:hover {
-  background-color: var(--light-orange);
+  background-color: var(--intense-yellow);
 }
 
 .sendButton:active {
