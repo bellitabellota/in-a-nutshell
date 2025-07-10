@@ -13,9 +13,9 @@ function formatDate(dateString) {
   if (isToday) {
     return `${hours}:${minutes}`;
   } else {
-    const day = date.getDate().toString().padStart(2, '0');
+    const day = date.getDate().toString();
     const month = date.toLocaleString('en-US', { month: 'short' });
-    return `${day}. ${month} ${hours}:${minutes}`;
+    return `${day} ${month} ${hours}:${minutes}`;
   }
 }
 
