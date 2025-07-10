@@ -14,7 +14,7 @@ function ContactList() {
           <div className={styles.contactContainer}>
             <img src={defaultProfilePicture} className={styles.profilePicture} alt="Profile" />
             <p className={styles.contactName}>{contact.profile.name}</p>
-            <p>{formatContactListDate(contact.lastActivity)}</p>
+            <p className={styles.latestActivity}>{formatContactListDate(contact.lastActivity)}</p>
           </div>
         </Link>
       ))}

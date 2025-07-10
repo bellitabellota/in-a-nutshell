@@ -1,6 +1,5 @@
 .contactContainer {
   border-radius: 5px;
-  color: black; /*decide for link style */
   display: flex;
   gap: 15px;
   padding: 10px;
@@ -17,6 +16,7 @@
 
 .contactList a {
   text-decoration: none;
+  color: black;
 }
 
 .profilePicture{
@@ -27,4 +27,9 @@
 
 .contactName{
   flex: 1;
+}
+
+.latestActivity{
+  font-size: var(--S-font-size);
+  color: var(--dark-grey-font);
 }

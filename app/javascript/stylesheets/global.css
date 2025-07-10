@@ -8,6 +8,7 @@
   --S-font-size: calc(0.75rem + 0.2vw);
   --XS-font-size: calc(0.625rem + 0.2vw);
   --grey-font: grey;
+  --dark-grey-font: rgb(94, 94, 94);
 }
 
 h1, h2, h3, h4, h5, figure, p, ol, ul {
