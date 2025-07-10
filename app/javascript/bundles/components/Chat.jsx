@@ -47,7 +47,7 @@ function Chat() {
     // https://github.com/rails/actiontext/issues/13
     // https://github.com/rails/actiontext/issues/6
     return (<div key={message.id} className={`${styles.message} ${messageClass}`}>
-      <div dangerouslySetInnerHTML={{ __html: cleanedContent }} />
+      <p dangerouslySetInnerHTML={{ __html: cleanedContent }} />
       <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
   })
