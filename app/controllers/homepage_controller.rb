@@ -15,7 +15,8 @@ class HomepageController < ApplicationController
           info: contact.profile.info,
           connectToken: contact.profile.connect_token
         },
-        chatId: chat.id
+        chatId: chat.id,
+        lastActivity: chat.messages.maximum(:created_at)
       }
     end
 
