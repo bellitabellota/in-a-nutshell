@@ -87,8 +87,8 @@
 
 .messageDate {
   text-align: right;
-  font-size: 0.75rem;
-  color: grey;
+  font-size: var(--XS-font-size);
+  color: var(--grey-font);
 }
 
 .messageFormContainer{
