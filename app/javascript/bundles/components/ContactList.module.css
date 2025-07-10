@@ -6,6 +6,7 @@
 }
 
 .contactContainer {
+  border: 2px solid transparent;
   border-radius: 5px;
   display: flex;
   gap: 15px;
@@ -16,11 +17,17 @@
 }
 
 .contactContainer:hover{
-  background-color: rgb(249, 249, 249);
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.6);
 }
 
-.contactContainer:active {
-  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+.isOpen{
+  border: 2px solid var(--intense-yellow);
+  background-color: var(--soft-yellow);
+  box-shadow: none;
+}
+
+.isOpen:hover{
+  box-shadow: none;
 }
 
 .contactList a {

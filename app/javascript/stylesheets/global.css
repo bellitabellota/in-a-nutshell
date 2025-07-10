@@ -6,6 +6,8 @@
   --primary-orange: rgb(234,151,31);
   --light-orange:rgb(253, 189, 100);
   --dark-orange:rgb(255, 163, 59);
+  --intense-yellow: rgb(255, 207, 118);
+  --soft-yellow:rgb(255, 247, 211);
 
   --M-font-size: calc(0.9375rem + 0.15vw);
   --S-font-size: calc(0.75rem + 0.15vw);

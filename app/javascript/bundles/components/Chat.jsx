@@ -73,7 +73,7 @@ function Chat() {
       <div className={styles.desktopScreen}>
         {isDesktop && (
           <div className={`${styles.listContainer} ${listExpanded ? styles.listContainerExpanded : ""}`}>
-            <ContactList />
+            <ContactList currentChatId={Number(params.chatId)}/>
           </div>
         )}
         
