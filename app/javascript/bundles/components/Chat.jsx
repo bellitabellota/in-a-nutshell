@@ -33,16 +33,21 @@ function Chat() {
   }
 
   const currentUser = useContext(CurrentUserContext);
+  function stripHtmlComments(htmlString) {
+    return htmlString.replace(/<!--[\s\S]*?-->/g, '');
+  }
 
   const messages = messagesInChat.map((message) => {
     const isCurrentUser = message.author === currentUser.id;
     const messageClass = isCurrentUser ? styles.messageCurrentUser : styles.messageContact;
 
+    const cleanedContent = stripHtmlComments(message.contentBody);
+
     // ActionText & Sanitization:
     // https://github.com/rails/actiontext/issues/13
     // https://github.com/rails/actiontext/issues/6
     return (<div key={message.id} className={`${styles.message} ${messageClass}`}>
-      <div dangerouslySetInnerHTML={{ __html: message.contentBody }} />
+      <div dangerouslySetInnerHTML={{ __html: cleanedContent }} />
       <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
   })
