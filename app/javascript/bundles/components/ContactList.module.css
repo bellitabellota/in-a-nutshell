@@ -15,6 +15,10 @@
   padding: 10px;
 }
 
+.contactList a {
+  text-decoration: none;
+}
+
 .profilePicture{
   width: calc(30px + 1vw);
   aspect-ratio: 1/1;
