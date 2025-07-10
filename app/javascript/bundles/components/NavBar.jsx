@@ -6,9 +6,9 @@ function NavBar() {
   const currentUser = useContext(CurrentUserContext);
   return(
     <nav>
-      <Link to="/">Chats</Link>
-      <Link to="/contacts">Contacts</Link>
-      <Link to={`/profile/${currentUser.profile.connectToken}`}>My Profile</Link>
+      <p><Link to="/">Chats</Link></p>
+      <p><Link to="/contacts">Contacts</Link></p>
+      <p><Link to={`/profile/${currentUser.profile.connectToken}`}>My Profile</Link></p>
     </nav>
   )
 }
