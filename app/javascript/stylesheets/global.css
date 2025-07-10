@@ -4,6 +4,9 @@
 :root {
   line-height: 1.5;
   --primary-orange: rgb(234,151,31);
+  --light-orange:rgb(253, 189, 100);
+  --dark-orange:rgb(255, 163, 59);
+
   --M-font-size: calc(0.875rem + 0.25vw);
   --S-font-size: calc(0.75rem + 0.2vw);
   --XS-font-size: calc(0.625rem + 0.2vw);
@@ -85,12 +88,12 @@ nav {
 nav > * {
   text-align: center;
   border-top-right-radius: 15px;
-  background-color: rgb(248, 171, 63);
+  background-color: var(--dark-orange);;
   color: black;
   text-decoration: none;
   padding: 4px 15px;
 }
 
 nav > *:hover {
-  background-color:  rgb(253, 189, 100);
+  background-color:  var(--light-orange);
 }
