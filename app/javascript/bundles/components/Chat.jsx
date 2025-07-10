@@ -14,6 +14,7 @@ import { useMediaQuery } from "react-responsive";
 import ContactList from "./ContactList";
 import SendIcon from "../../images/send_icon.svg"
 import ContactsContext from "./contexts/ContactsContext";
+import useTrixSendOnEnter from "../customHooks/useTrixSendOnEnter";
 
 function Chat() {
   const params = useParams();
@@ -61,6 +62,8 @@ function Chat() {
     event.preventDefault();
     setNewMessage(trixRef.current.editor.element.innerHTML)
   }
+
+  useTrixSendOnEnter(trixRef, sendMessageHandler);
 
   function stripHtmlComments(htmlString) {
     return htmlString.replace(/<!--[\s\S]*?-->/g, '');
