@@ -2,7 +2,7 @@ import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import useChat from "../customHooks/useChat";
 import { CableContext } from "./contexts/cable";
-import { useContext, useEffect, useRef, useState } from "react";
+import { useContext, useEffect, useRef, useState, useLayoutEffect } from "react";
 import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
 import useChatChannel from "../customHooks/useChatChannel";
@@ -28,6 +28,32 @@ function Chat() {
 
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
+  const lastMessageRef = useRef(null);
+  const messageDisplay= useRef(null);
+  const firstLoadForChat = useRef(true);
+
+  useEffect(() => {
+    if (!lastMessageRef.current || !messageDisplay.current) return;
+  
+    const container = messageDisplay.current;
+
+    if (firstLoadForChat.current) {
+      firstLoadForChat.current = false;
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      return;
+    }
+  
+    const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 200;
+  
+    if (isNearBottom) {
+      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+    }
+  }, [messagesInChat]);
+
+  useEffect(() => {
+    firstLoadForChat.current = true;
+  }, [params.chatId]);
+
   useChatChannel(params.chatId, setMessagesInChat, setContacts)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
 
@@ -40,16 +66,18 @@ function Chat() {
     return htmlString.replace(/<!--[\s\S]*?-->/g, '');
   }
 
-  const messages = messagesInChat.map((message) => {
+  const messages = messagesInChat.map((message, index) => {
     const isCurrentUser = message.author === currentUser.id;
     const messageClass = isCurrentUser ? styles.messageCurrentUser : styles.messageContact;
 
     const cleanedContent = stripHtmlComments(message.contentBody);
 
+    const isLastMessage = index === messagesInChat.length - 1;
+
     // ActionText & Sanitization:
     // https://github.com/rails/actiontext/issues/13
     // https://github.com/rails/actiontext/issues/6
-    return (<div key={message.id} className={`${styles.message} ${messageClass}`}>
+    return (<div key={message.id} className={`${styles.message} ${messageClass}`} ref={isLastMessage ? lastMessageRef : null}>
       <p dangerouslySetInnerHTML={{ __html: cleanedContent }} />
       <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
@@ -78,7 +106,7 @@ function Chat() {
         )}
         
         <div className={`${styles.chatContainer} ${(isDesktop && listExpanded) ? styles.chatContainerNone : ""}`}>
-          <div className={styles.messageDisplay}>
+          <div className={styles.messageDisplay} ref={messageDisplay}>
             { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
           </div>
           <div className={styles.messageFormContainer}>
