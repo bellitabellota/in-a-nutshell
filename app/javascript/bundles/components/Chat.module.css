@@ -119,7 +119,7 @@
 }
 
 .sendButton:hover {
-  background-color: rgb(234,151,31);
+  background-color: var(--primary-orange);
 }
 
 .sendButton:active {
