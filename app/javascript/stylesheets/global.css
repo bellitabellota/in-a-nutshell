@@ -25,6 +25,11 @@ img {
 }
 
 /* Global styles*/
+
+p {
+  font-size: calc(0.875rem + 0.25vw);
+}
+
 body {
   background-color: rgb(255, 252, 234);
   height: 100vh;
