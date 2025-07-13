@@ -13,7 +13,7 @@
     <link rel="icon" href="/icon.png" type="image/png">
     <link rel="icon" href="/icon.svg" type="image/svg+xml">
     <link rel="apple-touch-icon" href="/icon.png">
-    <%= stylesheet_link_tag "application" %>
+    <%= stylesheet_pack_tag "react-app" %>
     <%= javascript_pack_tag "react-app" %>
 
   </head>
@@ -22,11 +22,13 @@
     <p class="notice"><%= notice %></p>
     <p class="alert"><%= alert %></p>
     <%= yield %>
+        <%# 
     <svg class="wave" width="100%" height="100%" viewBox="0 0 1440 690" preserveAspectRatio="none" xmlns="http://www.w3.org/2000/svg">
       <path d="M0,700 L0,105 C206,135 823,120 1440,105 L1440,700 L0,700 Z" fill="#ea971f" fill-opacity="0.265"/>
       <path d="M0,700 L0,245 C206,315 823,280 1440,245 L1440,700 L0,700 Z" fill="#ea971f" fill-opacity="0.4"/>
       <path d="M0,700 L0,385 C206,495 823,440 1440,385 L1440,700 L0,700 Z" fill="#ea971f" fill-opacity="0.53"/>
       <path d="M0,700 L0,525 C206,675 823,600 1440,525 L1440,700 L0,700 Z" fill="#ea971f"/>
     </svg>
+    %>
   </body>
 </html>
