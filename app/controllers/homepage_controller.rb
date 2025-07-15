@@ -13,7 +13,8 @@ class HomepageController < ApplicationController
         profile: {
           name: contact.profile.name,
           info: contact.profile.info,
-          connectToken: contact.profile.connect_token
+          connectToken: contact.profile.connect_token,
+          picture: contact.profile.picture.attached? ? url_for(contact.profile.picture) : nil
         },
         chatId: chat.id,
         lastActivity: chat.messages.maximum(:created_at)
@@ -23,9 +24,11 @@ class HomepageController < ApplicationController
     @react_props = {
       id: current_user.id,
       profile: {
+        id: current_user.profile.id,
         name: current_user.profile.name,
         info: current_user.profile.info,
-        connectToken: current_user.profile.connect_token
+        connectToken: current_user.profile.connect_token,
+        picture: current_user.profile.picture.attached? ? url_for(current_user.profile.picture) : nil
       },
       contacts: contact_profiles
     }
