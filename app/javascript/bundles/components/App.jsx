@@ -10,12 +10,12 @@ import horizontalLogo from "../../images/in-a-nutshell-logo-lettering-horizontal
 const router = createBrowserRouter(routes);
 
 
-function App(currentUser) {
-  const [contacts, setContacts] = useState(currentUser.contacts);
+function App(reactProps) {
+  const [contacts, setContacts] = useState(reactProps.contacts);
   return (
     <div className="app-container">
       <img src={horizontalLogo} className="horizontal-logo"/>
-      <CurrentUserContext.Provider value={{ id: currentUser.id, profile: currentUser.profile }}>
+      <CurrentUserContext.Provider value={{ id: reactProps.id, profile: reactProps.profile }}>
         <ContactsContext.Provider value={{ contacts, setContacts }}>
           <CableProvider>
             <RouterProvider router={router} />
