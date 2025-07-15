@@ -2,6 +2,7 @@ import NavBar from "./NavBar";
 import { useContext, useState } from "react";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 import ProfileCard from "./ProfileCard";
+import ProfileEditForm from "./ProfileEditForm";
 
 function Profile() {
   const currentUser = useContext(CurrentUserContext);
@@ -11,7 +12,7 @@ function Profile() {
   return(
     <main>
       <NavBar />
-      <ProfileCard profile={currentUser.profile} setEditingMode={setEditingMode}/>
+      { editingMode ? <ProfileEditForm profile={currentUser.profile} /> : <ProfileCard profile={currentUser.profile} setEditingMode={setEditingMode}/> }
     </main>  
   )
 }
