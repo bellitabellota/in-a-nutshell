@@ -12,6 +12,11 @@ class Api::V1::ProfilesController < ApplicationController
   def update
     profile = Profile.find(params[:id])
 
+    if current_user.id != profile.user_id
+      render json: { error: "Not allowed" }, status: :forbidden
+      return
+    end
+
     if profile.update(profile_params)
       render json: {
         id: profile.id,
