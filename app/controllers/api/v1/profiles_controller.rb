@@ -18,7 +18,7 @@ class Api::V1::ProfilesController < ApplicationController
         name: profile.name,
         info: profile.info,
         connectToken: profile.connect_token,
-        pictureURL: url_for(profile.picture)
+        pictureURL: current_user.profile.picture.attached? ? url_for(current_user.profile.picture) : nil
       }
     else
       render json: { error: "Profile could not be updated." }, status: :unprocessable_entity
