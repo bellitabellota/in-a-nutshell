@@ -1,6 +1,8 @@
-import { useState,  } from "react";
+import { useState, useContext  } from "react";
+import CurrentUserContext from "./contexts/CurrentUserContext";
 
-const ProfileEditForm = ({profile}) => {
+const ProfileEditForm = ({profile, setEditingMode}) => {
+  const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
   const [nameInput, setNameInput] = useState(profile.name);
   const [infoText, setInfoText] = useState(profile.info);
   const [selectedFile, setSelectedFile] = useState(null);
@@ -24,8 +26,33 @@ const ProfileEditForm = ({profile}) => {
       }, 
       body: formData
     })
-  };
+    .then((response) =>{
+      if (!response.ok) {
+        return response.json().then((errorData) => {
+          throw new Error(`${errorData.error} (HTTP status: ${response.status})` || `HTTP Error ${response.status}: ${response.statusText}`);
+        });
+      }
+      return response.json();
+    })
+    .then(profileData => {
+      const updatedCurrentUser = {
+        id: currentUser.id,
+        profile: {
+          id: profileData.id,
+          name: profileData.name,
+          info: profileData.info,
+          connectToken: profileData.connectToken,
+          picture: profileData.pictureURL
+        }
+      };
 
+      setCurrentUser(updatedCurrentUser)
+      setEditingMode(false);
+    })
+    .catch((error) => {
+      console.log(error.message);
+    });
+  };
 
   return(
     <div>
