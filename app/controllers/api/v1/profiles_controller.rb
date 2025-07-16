@@ -13,9 +13,14 @@ class Api::V1::ProfilesController < ApplicationController
     profile = Profile.find(params[:id])
 
     if profile.update(profile_params)
-      render json: profile.as_json.merge({ pictureURL: url_for(profile.picture) })
+      render json: {
+        id: profile.id,
+        name: profile.name,
+        info: profile.info,
+        connectToken: profile.connect_token,
+        pictureURL: url_for(profile.picture)
+      }
     else
-      # if time permits improve error handling
       render json: { error: "Profile could not be updated." }, status: :unprocessable_entity
     end
   end
