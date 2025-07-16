@@ -8,6 +8,11 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
   const [selectedFile, setSelectedFile] = useState(null);
 
   const updateHandler = () => {
+    if (!nameInput.trim()) {
+      alert("A unique name is required.");
+      return;
+    }
+
     const url = `/api/v1/profiles/${profile.id}`;
     const token = document.querySelector('meta[name="csrf-token"]').content
     const formData = new FormData();
