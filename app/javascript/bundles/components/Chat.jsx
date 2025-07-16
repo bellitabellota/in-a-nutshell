@@ -22,7 +22,7 @@ function Chat() {
   const trixRef = useRef();
   const [newMessage, setNewMessage] = useState();
 
-  const currentUser = useContext(CurrentUserContext);
+  const {currentUser} = useContext(CurrentUserContext);
   const { contacts, setContacts } = useContext(ContactsContext);
 
   const {error, isLoading } = useChat(params.chatId, setMessagesInChat)

@@ -5,7 +5,7 @@ import ProfileCard from "./ProfileCard";
 import ProfileEditForm from "./ProfileEditForm";
 
 function Profile() {
-  const currentUser = useContext(CurrentUserContext);
+  const {currentUser} = useContext(CurrentUserContext);
   console.log(currentUser);
   const [editingMode, setEditingMode] = useState(false);
   

@@ -11,11 +11,13 @@ const router = createBrowserRouter(routes);
 
 
 function App(reactProps) {
+  const user = {id: reactProps.id, profile:{...reactProps.profile}}
+  const [currentUser, setCurrentUser] = useState(user);
   const [contacts, setContacts] = useState(reactProps.contacts);
   return (
     <div className="app-container">
       <img src={horizontalLogo} className="horizontal-logo"/>
-      <CurrentUserContext.Provider value={{ id: reactProps.id, profile: reactProps.profile }}>
+      <CurrentUserContext.Provider value={{ currentUser, setCurrentUser}}>
         <ContactsContext.Provider value={{ contacts, setContacts }}>
           <CableProvider>
             <RouterProvider router={router} />

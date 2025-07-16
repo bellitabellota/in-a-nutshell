@@ -3,7 +3,7 @@ import { useContext } from "react";
 import CurrentUserContext from "./contexts/CurrentUserContext";
 
 function NavBar() {
-  const currentUser = useContext(CurrentUserContext);
+  const { currentUser } = useContext(CurrentUserContext);
   const location = useLocation();
 
   const isChats = location.pathname === "/" || location.pathname.startsWith("/chats/");
