@@ -1,0 +1,16 @@
+.mainProfile {
+  display: flex;
+  flex-direction: column;
+}
+
+.contentProfile {
+  margin: 10px;
+  padding: 10px;
+  height: 100%;
+  background-color: rgb(245, 245, 245);
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+}

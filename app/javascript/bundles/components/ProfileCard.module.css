@@ -1,0 +1,104 @@
+.profileCard {
+  padding: 2vw 1.5vw;
+  border-radius: 15px;
+  background-color: white;
+  height: fit-content;
+  max-height: 100%;
+
+  display:flex;
+  box-shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
+  gap: 1.5vw;
+}
+
+.profilePictureContainer {
+  width: clamp(150px, 12.5vw, 175px);
+  padding: 0.5vw;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.profilePicture {
+  object-fit: cover;
+  aspect-ratio: 1/1;
+  border-radius: 150px;
+}
+
+.profileCardTextContainer {
+  flex:1;
+  align-self: stretch;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+.profileInfo {
+  display: flex;
+  flex-direction: column;
+  flex: 1;
+  justify-content: center;
+  min-height: 0;
+}
+
+.profileInfo > * + * {
+  margin-block-start: 1rem;
+}
+
+.label {
+  font-weight: 600;
+}
+
+.info {
+  white-space: pre-wrap;
+  overflow: auto;
+}
+
+.profileCardActions {
+  align-self: flex-end;
+}
+
+.profileCardActions > button {
+  padding: 0.25rem 0.5rem;
+  border-radius: 0.5rem;
+  border:none;
+  font-size: var(--S-font-size);
+  background-color: var(--dark-orange);
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.5);
+  flex-shrink: 0;
+  
+  cursor: pointer;
+  transition: background-color 0.3s ease, box-shadow 0.15s;
+}
+
+.profileCardActions > button:hover {
+  background-color: var(--intense-yellow);
+}
+
+.profileCardActions > button:active {
+  box-shadow: 1px 1px 2px rgba(0, 0, 0, 0.3);
+}
+
+@media (max-width: 600px) {
+  .profileCard {
+    padding: 15px;
+    flex-direction: column;
+    gap: 5vw;
+  }
+
+  .profileInfo {
+    align-items: center;
+    text-align: center;
+  }
+
+  .profileCardTextContainer {
+    overflow:hidden;
+  }
+
+  .profileCardActions > button {
+    margin-bottom: 2px;
+    margin-right: 2px;
+  }
+}
+
+
