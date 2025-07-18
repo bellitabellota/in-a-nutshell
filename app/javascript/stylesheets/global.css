@@ -84,7 +84,7 @@ main {
 
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
-  width: max(300px, 75vw);
+  width: clamp(300px, 75vw, 1250px);
   height: 75vh;
 }
 
