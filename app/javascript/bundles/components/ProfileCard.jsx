@@ -1,7 +1,13 @@
 import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 import * as styles from "./ProfileCard.module.css"
+import CurrentUserContext from "./contexts/CurrentUserContext";
+import ContactsContext from "./contexts/ContactsContext";
+import { useContext } from "react";
 
 function ProfileCard ({profile, setEditingMode}) {
+  const {setCurrentUser} = useContext(CurrentUserContext)
+  const {setContacts} = useContext(ContactsContext)
+
   const imageSrc = profile.picture || defaultProfilePicture;
 
   const deleteAccountHandler = () => {
@@ -17,7 +23,21 @@ function ProfileCard ({profile, setEditingMode}) {
       headers: {
         "X-CSRF-Token": token
       }
+    }).then((response) => {
+      if (!response.ok) {
+        throw new Error("Failed to delete account.");
+      }
+      return response.json();
     })
+    .then((data) => {
+      alert(data.message);
+      setCurrentUser({id: undefined, profile:{connectToken: ""}});
+      setContacts([]);
+      window.location.href = "/users/sign_in";
+    })
+    .catch((error) => {
+      alert(error.message);
+    });
   }
 
   return(
