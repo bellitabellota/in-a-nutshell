@@ -4,6 +4,22 @@ import * as styles from "./ProfileCard.module.css"
 function ProfileCard ({profile, setEditingMode}) {
   const imageSrc = profile.picture || defaultProfilePicture;
 
+  const deleteAccountHandler = () => {
+    if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
+      return;
+    }
+
+    const url = "/api/v1/users/destroy"
+    const token = document.querySelector('meta[name="csrf-token"]').content
+
+    fetch(url, {
+      method: "DELETE",
+      headers: {
+        "X-CSRF-Token": token
+      }
+    })
+  }
+
   return(
     <div className={styles.profileCard}>
       <div className={styles.profilePictureContainer}>
@@ -17,6 +33,7 @@ function ProfileCard ({profile, setEditingMode}) {
           <p className={styles.info}><span className={styles.label}>Info:</span> {profile.info || "--"}</p>
         </div>
         <div className={styles.profileCardActions}>
+          <button onClick={deleteAccountHandler}>Delete Account</button>
           <button onClick={() => setEditingMode(true)}>Edit</button>
         </div>
       </div>
