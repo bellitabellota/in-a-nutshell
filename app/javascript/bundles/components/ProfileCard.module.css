@@ -56,6 +56,9 @@
 
 .profileCardActions {
   align-self: flex-end;
+
+  display: flex;
+  gap: 1vw;
 }
 
 .profileCardActions > button {
@@ -93,6 +96,11 @@
 
   .profileCardTextContainer {
     overflow:hidden;
+  }
+
+  .profileCardActions {
+    align-self: center;
+    gap: 15px;
   }
 
   .profileCardActions > button {
