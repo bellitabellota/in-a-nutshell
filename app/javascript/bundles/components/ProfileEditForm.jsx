@@ -8,6 +8,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
   const [nameInput, setNameInput] = useState(profile.name);
   const [infoText, setInfoText] = useState(profile.info);
   const [selectedFile, setSelectedFile] = useState(null);
+  const [previewURL, setPreviewURL] = useState(null);
 
   const updateHandler = () => {
     if (!nameInput.trim()) {
@@ -61,11 +62,19 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
     });
   };
 
+  const choosingImageHandler = (event) => {
+    const file = event.target.files[0];
+    if (file) {
+      setSelectedFile(file);
+      setPreviewURL(URL.createObjectURL(file));
+    }
+  }
+
   return(
     <div className={styles.profileEditFormCard}>
       <div className={styles.profilePictureContainer}>
-        <img src={profile.picture || defaultProfilePicture} className={styles.profilePicture}/>
-        <input type="file" onChange={event=>{setSelectedFile(event.target.files[0])}}/>
+        <img src={previewURL || profile.picture || defaultProfilePicture} className={styles.profilePicture}/>
+        <input type="file" onChange={choosingImageHandler}/>
       </div>
 
       <div className={styles.profileCardTextInfoContainer}>
