@@ -1,5 +1,7 @@
 import { useState, useContext  } from "react";
 import CurrentUserContext from "./contexts/CurrentUserContext";
+import * as styles from "./ProfileEditForm.module.css"
+import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 
 const ProfileEditForm = ({profile, setEditingMode}) => {
   const {currentUser, setCurrentUser} = useContext(CurrentUserContext);
@@ -60,12 +62,32 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
   };
 
   return(
-    <div>
-      <input type="file" onChange={event=>{setSelectedFile(event.target.files[0])}}/>
-      <input type="text" value={nameInput} onChange={(event) => {setNameInput(event.target.value)}}/>
-      <p>Connect Token: {profile.connectToken} </p>
-      <textarea value={infoText ? infoText : ""} placeholder={"Tell something about yourself..."} onChange={(event) => {setInfoText(event.target.value)}}></textarea>
-      <button onClick={updateHandler}>Update</button>
+    <div className={styles.profileEditFormCard}>
+      <div className={styles.profilePictureContainer}>
+        <img src={profile.picture || defaultProfilePicture} className={styles.profilePicture}/>
+        <input type="file" onChange={event=>{setSelectedFile(event.target.files[0])}}/>
+      </div>
+
+      <div className={styles.profileCardTextInfoContainer}>
+        <div className={styles.profileCardTextFieldsContainer}>
+          <div className={styles.fieldGroup}>
+            <label htmlFor="name" className={styles.label} >Name:</label>
+            <input type="text" id="name" value={nameInput} onChange={(event) => {setNameInput(event.target.value)}}/>
+          </div>
+          <div className={styles.fieldGroup}>
+            <span className={styles.label}>Connect Token:</span>
+            <p> {profile.connectToken}</p>
+          </div>
+          <div className={styles.fieldGroup}>
+            <label htmlFor="info" className={styles.label}>Info:</label>
+            <textarea value={infoText ? infoText : ""} id= "info" placeholder={"Tell something about yourself..."} onChange={(event) => {setInfoText(event.target.value)}}></textarea>
+          </div>
+          
+        </div>
+        <div className={styles.profileCardActions}>
+          <button onClick={updateHandler}>Update</button>
+        </div>
+      </div>
     </div>
   )
 }
