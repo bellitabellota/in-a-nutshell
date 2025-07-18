@@ -21,7 +21,6 @@
   flex-direction: column;
   gap: 1.5vw;
 
-
   align-items: center;
 }
 
@@ -87,6 +86,9 @@
 
 .profileCardActions {
   align-self: flex-end;
+
+  display: flex;
+  gap: 1vw;
 }
 
 .profileCardActions > button {
@@ -137,6 +139,11 @@
 
   .fieldGroup > input {
     width: 100%;
+  }
+
+  .profileCardActions {
+    align-self: center;
+    gap: 15px;
   }
 
   .profileCardActions > button {

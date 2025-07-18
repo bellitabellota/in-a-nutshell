@@ -94,6 +94,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
           
         </div>
         <div className={styles.profileCardActions}>
+          <button onClick={() => setEditingMode(false)}>Back</button>
           <button onClick={updateHandler}>Update</button>
         </div>
       </div>
