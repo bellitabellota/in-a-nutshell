@@ -2,6 +2,7 @@ import { useRef, useState, useContext, useEffect } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import ContactsContext from "./contexts/ContactsContext";
+import * as styles from "./Contacts.module.css"
 
 function Contacts() {
   const tokenInputRef = useRef(null);
@@ -65,13 +66,19 @@ function Contacts() {
   const isConnected = searchedProfile && contacts.some((contact) => contact.profile.connectToken === searchedProfile.connectToken);
 
   return( 
-    <main>
+    <main className={styles.mainContacts}>
       <NavBar />
-      <input type="text" ref={tokenInputRef} />
-      <button onClick={searchHandler}>Search</button>
-      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => (
-        isConnected ? <p>Connected</p> : <button onClick={connectHandler}>Connect</button>
-      )}/>}
+      <div className={styles.contentContacts}>
+        <div className={styles.searchBarContainer}>
+          <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token"/>
+          <button onClick={searchHandler}>Search</button>
+        </div>
+        <div className={styles.searchResultContainer}>
+          {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => (
+            isConnected ? <p className={styles.connected}>Connected</p> : <button onClick={connectHandler}>Connect</button>
+          )}/>}
+        </div>
+      </div>
     </main>
   )
 }
