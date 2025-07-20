@@ -3,7 +3,13 @@ class Api::V1::ProfilesController < ApplicationController
     profile = Profile.find_by(connect_token: params[:token])
 
     if profile
-      render json: { name: profile.name, connectToken: profile.connect_token, info: profile.info, userID: profile.user_id  }
+      render json: {
+        id: profile.id,
+        name: profile.name,
+        info: profile.info,
+        connectToken: profile.connect_token,
+        pictureURL: current_user.profile.picture.attached? ? url_for(current_user.profile.picture) : nil
+      }
     else
       render json: { error: "User not found." }, status: :not_found
     end
