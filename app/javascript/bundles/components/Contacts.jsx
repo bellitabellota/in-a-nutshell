@@ -1,12 +1,12 @@
-import { useRef, useState } from "react";
+import { useRef, useState, useContext } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
+import ContactsContext from "./contexts/ContactsContext";
 
 function Contacts() {
   const tokenInputRef = useRef(null);
-  // ba11bfd39333d12cc304 - Olivia's token
-  // b4d1cefc1fccd579ea18 - Anna's token
   const [searchedProfile, setSearchedProfile]= useState(undefined);
+  const {contacts, setContacts} = useContext(ContactsContext)
 
   const searchHandler = () => {
     const searchedToken = tokenInputRef.current.value.trim();
@@ -46,14 +46,29 @@ function Contacts() {
       },
       body: JSON.stringify(body)
     })
-  }
-  
-  return(
+    .then((response) =>{
+      if (!response.ok) {
+        return response.json().then((errorData) => {
+          throw new Error(`${errorData.error} (HTTP status: ${response.status})` || `HTTP Error ${response.status}: ${response.statusText}`);
+        });
+      }
+      return response.json();
+    })
+    .then(data => {
+      alert(data.message)
+      setContacts([...contacts, data.contact])
+    })
+    .catch((error) => {
+      alert(error)
+    });
+  };
+
+  return( 
     <main>
       <NavBar />
       <input type="text" ref={tokenInputRef} />
       <button onClick={searchHandler}>Search</button>
-      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => <button onClick={connectHandler}>Connect</button>}/>}
+      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => <button onClick={connectHandler}>Connect</button> /*only show button if contact is not already included in ContactsContext*/}/>}
     </main>
   )
 }
