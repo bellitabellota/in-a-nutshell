@@ -1,4 +1,4 @@
-import { useRef, useState, useContext } from "react";
+import { useRef, useState, useContext, useEffect } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import ContactsContext from "./contexts/ContactsContext";
@@ -55,7 +55,6 @@ function Contacts() {
       return response.json();
     })
     .then(data => {
-      alert(data.message)
       setContacts([...contacts, data.contact])
     })
     .catch((error) => {
@@ -63,12 +62,16 @@ function Contacts() {
     });
   };
 
+  const isConnected = searchedProfile && contacts.some((contact) => contact.profile.connectToken === searchedProfile.connectToken);
+
   return( 
     <main>
       <NavBar />
       <input type="text" ref={tokenInputRef} />
       <button onClick={searchHandler}>Search</button>
-      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => <button onClick={connectHandler}>Connect</button> /*only show button if contact is not already included in ContactsContext*/}/>}
+      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => (
+        isConnected ? <p>Connected</p> : <button onClick={connectHandler}>Connect</button>
+      )}/>}
     </main>
   )
 }
