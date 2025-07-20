@@ -8,7 +8,7 @@ class Api::V1::ProfilesController < ApplicationController
         name: profile.name,
         info: profile.info,
         connectToken: profile.connect_token,
-        pictureURL: current_user.profile.picture.attached? ? url_for(current_user.profile.picture) : nil
+        picture: profile.picture.attached? ? url_for(profile.picture) : nil
       }
     else
       render json: { error: "User not found." }, status: :not_found
