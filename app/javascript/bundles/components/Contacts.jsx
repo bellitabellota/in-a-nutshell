@@ -25,7 +25,6 @@ function Contacts() {
       }
       return response.json();
     }).then((data) => {
-      console.log(data)
       setSearchedProfile(data)
     }).catch((error) => {
       alert(error)
@@ -33,13 +32,17 @@ function Contacts() {
       tokenInputRef.current.value = ``;
     })
   }
+
+  const connectHandler = () => {
+    alert("Connect")
+  }
   
   return(
     <main>
       <NavBar />
       <input type="text" ref={tokenInputRef} />
       <button onClick={searchHandler}>Search</button>
-      {searchedProfile && <ProfileCard profile={searchedProfile} />}
+      {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => <button onClick={connectHandler}>Connect</button>}/>}
     </main>
   )
 }
