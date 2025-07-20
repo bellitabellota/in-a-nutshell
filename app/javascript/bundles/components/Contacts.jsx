@@ -35,7 +35,7 @@ function Contacts() {
 
   const connectHandler = () => {
     const url = "/api/v1/user_contacts/connect";
-    const token = document.querySelector('meta[name="csrf-token').content;
+    const token = document.querySelector('meta[name="csrf-token"]').content;
     const body = { user_contact: { contactId: searchedProfile.id } };
 
     fetch(url, {
