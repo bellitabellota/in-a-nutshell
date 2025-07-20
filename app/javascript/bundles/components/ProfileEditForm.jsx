@@ -50,7 +50,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
           name: profileData.name,
           info: profileData.info,
           connectToken: profileData.connectToken,
-          picture: profileData.pictureURL
+          picture: profileData.picture
         }
       };
 
