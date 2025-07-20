@@ -9,6 +9,9 @@
   --intense-yellow: rgb(255, 207, 118);
   --soft-yellow:rgb(255, 247, 211);
 
+  --middle-dark-grey: rgb(106, 105, 105);
+  --middle-grey:rgb(132, 131, 131);
+
   --M-font-size: calc(0.9375rem + 0.15vw);
   --S-font-size: calc(0.75rem + 0.15vw);
   --XS-font-size: calc(0.675rem + 0.15vw);

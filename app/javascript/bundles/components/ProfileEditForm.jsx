@@ -74,7 +74,8 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
     <div className={styles.profileEditFormCard}>
       <div className={styles.profilePictureContainer}>
         <img src={previewURL || profile.picture || defaultProfilePicture} className={styles.profilePicture}/>
-        <input type="file" onChange={choosingImageHandler}/>
+        <label htmlFor="image_uploads">Choose Image</label>
+        <input type="file" onChange={choosingImageHandler} id="image_uploads" />
       </div>
 
       <div className={styles.profileCardTextInfoContainer}>
