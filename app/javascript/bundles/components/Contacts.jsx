@@ -34,7 +34,18 @@ function Contacts() {
   }
 
   const connectHandler = () => {
-    alert("Connect")
+    const url = "/api/v1/user_contacts/connect";
+    const token = document.querySelector('meta[name="csrf-token').content;
+    const body = { user_contact: { contactId: searchedProfile.id } };
+
+    fetch(url, {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+        "X-CSRF-Token": token
+      },
+      body: JSON.stringify(body)
+    })
   }
   
   return(
