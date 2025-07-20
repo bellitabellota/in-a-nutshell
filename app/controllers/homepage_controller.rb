@@ -3,7 +3,7 @@ class HomepageController < ApplicationController
     contact_ids = current_user.contacts.pluck(:id)
     contacts = User.includes(:profile).where(id: contact_ids)
 
-    contact_profiles = contacts.map do |contact|
+    contacts_with_profile_and_chat_info = contacts.map do |contact|
       user_ids = [ current_user.id, contact.id ].sort
 
       chat = Chat.find_by(user_a_id: user_ids[0], user_b_id: user_ids[1])
@@ -30,7 +30,7 @@ class HomepageController < ApplicationController
         connectToken: current_user.profile.connect_token,
         picture: current_user.profile.picture.attached? ? url_for(current_user.profile.picture) : nil
       },
-      contacts: contact_profiles
+      contacts: contacts_with_profile_and_chat_info
     }
   end
 end
