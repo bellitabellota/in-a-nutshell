@@ -17,6 +17,9 @@
   --XS-font-size: calc(0.675rem + 0.15vw);
   --grey-font: grey;
   --dark-grey-font: rgb(94, 94, 94);
+
+  --dark-bg-color:rgba(37, 51, 60, 0.9);
+  --light-bg-color: rgb(72, 55, 20);
 }
 
 h1, h2, h3, h4, h5, figure, p, ol, ul {
@@ -45,9 +48,43 @@ p {
 }
 
 body {
-  background-color: rgba(0, 0, 0, 0.755);
   height: 100vh;
-  overflow:auto;
+  overflow:hidden;
+}
+
+.site-bg {
+  /* inspired by https://stackoverflow.com/questions/71819578/how-to-achieve-this-low-opacity-gloomy-light-for-background-with-html-and-css */
+  width: 100%;
+  height: 100%;
+  background: radial-gradient(circle closest-corner at center 125px, var(--light-bg-color), var(--dark-bg-color) 70%);
+
+  overflow:hidden;
+}
+
+.site-bg::after,
+.site-bg::before {
+  content: "";
+  display: inline-block;
+  position: absolute;
+  background: var(--light-bg-color);
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  filter: blur(70px);
+  mix-blend-mode: lighten;
+  opacity: 1;
+}
+
+.site-bg::before {
+  top: 0;
+  right: 0;
+  transform: translate(30%, -30%);
+}
+
+.site-bg::after {
+  top: 50%;
+  left: 0px;
+  transform: translateX(-50%);
 }
 
 .app-container {
@@ -56,17 +93,6 @@ body {
   width: fit-content;
   padding-top: 5vh;
 }
-
-/*.wave {
-  position: fixed;
-  top: 25vh;
-  left: 0;
-  right: 0;
-  bottom: 0;
-  width: 100%;
-  height: calc(100vh - 25vh);
-  z-index: -1;
-}*/
 
 .pre-main-container {
   display:flex;
