@@ -45,7 +45,7 @@ p {
 }
 
 body {
-  background-color: rgb(255, 252, 234);
+  background-color: rgba(0, 0, 0, 0.755);
   height: 100vh;
   overflow:auto;
 }
@@ -57,7 +57,7 @@ body {
   padding-top: 5vh;
 }
 
-.wave {
+/*.wave {
   position: fixed;
   top: 25vh;
   left: 0;
@@ -66,10 +66,36 @@ body {
   width: 100%;
   height: calc(100vh - 25vh);
   z-index: -1;
+}*/
+
+.pre-main-container {
+  display:flex;
+  justify-content: space-between;
+  align-items: center;
 }
 
-.app-container > .horizontal-logo{
+.pre-main-container > .horizontal-logo{
   width: calc(200px + 4.5vw);
+}
+
+.pre-main-container button {
+  margin-right: 10px;
+  border: none;
+  background-color: transparent;
+}
+
+.logout-icon {
+  width: calc(15px + 0.75vw);
+  cursor: pointer;
+  transition: transform 0.15s ease;
+}
+
+.logout-icon:hover {
+  transform: scale(1.10);
+}
+
+.logout-icon:active {
+  transform: scale(1);
 }
 
 nav p a {
