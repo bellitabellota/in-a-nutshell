@@ -17,7 +17,7 @@ function ProfileCard ({profile, renderActions}) {
         <div className={styles.profileInfo}>
           <p><span className={styles.label}>Name:</span> {profile.name}</p>
           <p><span className={styles.label}>Connect Token:</span> {profile.connectToken}</p>
-          <p className={styles.info}><span className={styles.label}>Info:</span> {profile.info || "--"}</p>
+          <p className={styles.info}><span className={styles.label}>Info:</span> {profile.info ? profile.info : "--"}</p>
         </div>
         <div className={styles.profileCardActions}>
           {renderActions && renderActions()}
