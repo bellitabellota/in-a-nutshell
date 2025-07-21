@@ -7,7 +7,7 @@ import formatContactListDate from "../helpers/formatContactListDate";
 
 function ContactList({currentChatId}) {
   const {contacts} = useContext(ContactsContext);
-
+  console.log(contacts)
   return (
     <div className={styles.contactList}>
       {contacts.map((contact) => (
@@ -15,7 +15,7 @@ function ContactList({currentChatId}) {
           <div className={`${styles.contactContainer} ${currentChatId === contact.chatId ? styles.isOpen : ""}`}>
             <img src={contact.profile.picture || defaultProfilePicture} className={styles.profilePicture} alt="Profile" />
             <p className={styles.contactName}>{contact.profile.name}</p>
-            <p className={styles.latestActivity}>{formatContactListDate(contact.lastActivity)}</p>
+            <p className={styles.latestActivity}>{contact.lastActivity? formatContactListDate(contact.lastActivity): ""}</p>
           </div>
         </Link>
       ))}
