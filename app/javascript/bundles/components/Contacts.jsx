@@ -68,7 +68,7 @@ function Contacts() {
   return( 
     <main className={styles.mainContacts}>
       <NavBar />
-      <div className={styles.contentContacts}>
+      <div className={`${styles.contentContacts} pattern-bg`}>
         <div className={styles.searchBarContainer}>
           <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token"/>
           <button onClick={searchHandler}>Search</button>

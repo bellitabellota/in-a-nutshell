@@ -139,3 +139,22 @@ nav > *:hover {
 .active-nav {
   background-color: var(--intense-yellow);
 }
+
+.pattern-bg {
+    /* from https://css-pattern.com/curvy/ */
+  --s: 18px; /* control the size*/
+  --c1: #f5f5f5;
+  --c2: #9d9d9dcf;
+  
+  --_s: calc(2*var(--s)) calc(2*var(--s));
+  --_g: 35.36% 35.36% at;
+  --_c: #0000 66%,var(--c2) 68% 70%,#0000 72%;
+  background:
+    radial-gradient(var(--_g) 100% 25%,var(--_c)) var(--s) var(--s)/var(--_s),
+    radial-gradient(var(--_g) 0    75%,var(--_c)) var(--s) var(--s)/var(--_s),
+    radial-gradient(var(--_g) 100% 25%,var(--_c)) 0 0/var(--_s),
+    radial-gradient(var(--_g) 0    75%,var(--_c)) 0 0/var(--_s),
+    repeating-conic-gradient(var(--c1) 0 25%,#0000 0 50%) 0 0/var(--_s),
+    radial-gradient(var(--_c)) 0 calc(var(--s)/2)/var(--s) var(--s)
+    var(--c1);
+}

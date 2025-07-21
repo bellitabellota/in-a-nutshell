@@ -44,7 +44,7 @@ function Profile() {
   return(
     <main className={styles.mainProfile}>
       <NavBar />
-      <div className={styles.contentProfile}>
+      <div className={`${styles.contentProfile} pattern-bg`}>
         { editingMode ? <ProfileEditForm profile={currentUser.profile} setEditingMode={setEditingMode} /> 
                       : <ProfileCard profile={currentUser.profile} renderActions={() => (
                           <>
