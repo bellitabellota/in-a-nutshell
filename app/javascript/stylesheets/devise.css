@@ -1,3 +1,53 @@
 .devise-main {
-  background-color: green;
+  height: 100vh;
+
+  display: flex;
+  justify-content: center;
+  align-items: center; 
+}
+
+.devise-content{
+  background-color: white;
+  padding: calc(10px + 1vw);
+  border-radius: 10px;
+  border: calc(2px + 0.15vw) solid var(--primary-orange);
+}
+
+.devise-main h2 {
+  font-size: 1.25rem;
+  font-weight: 600;
+  text-align: center;
+  margin-bottom: 0.5vw;
+}
+
+.devise-main .field + .field {
+  margin-top: 1.25vw;
+}
+
+.actions {
+  height: calc(2rem + 2vw);
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  padding-bottom: 5px;
+}
+
+.devise-main input[type="submit"] {
+  border-radius: 5px;
+  color: white;
+  font-weight: bold;
+}
+
+.devise-main a {
+  color: var(--dark-orange);
+  text-decoration: none;
+}
+
+.devise-main a:hover, .devise-main a:focus {
+  color: var(--dark-orange);
+  text-decoration: underline;
+}
+
+.devise-main a:visited {
+  color: var(--middle-dark-grey);
 }
