@@ -71,11 +71,11 @@ function Contacts() {
       <div className={`${styles.contentContacts} pattern-bg`}>
         <div className={styles.searchBarContainer}>
           <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token"/>
-          <button onClick={searchHandler}>Search</button>
+          <button onClick={searchHandler} className="btn">Search</button>
         </div>
         <div className={styles.searchResultContainer}>
           {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => (
-            isConnected ? <p className={styles.connected}>Connected</p> : <button onClick={connectHandler}>Connect</button>
+            isConnected ? <p className={styles.connected}>Connected</p> : <button onClick={connectHandler} className="btn">Connect</button>
           )}/>}
         </div>
       </div>

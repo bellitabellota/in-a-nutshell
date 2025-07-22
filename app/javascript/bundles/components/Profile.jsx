@@ -48,8 +48,8 @@ function Profile() {
         { editingMode ? <ProfileEditForm profile={currentUser.profile} setEditingMode={setEditingMode} /> 
                       : <ProfileCard profile={currentUser.profile} renderActions={() => (
                           <>
-                            <button onClick={deleteAccountHandler}>Delete Account</button>
-                            <button onClick={() => setEditingMode(true)}>Edit</button>
+                            <button onClick={deleteAccountHandler} className="btn">Delete Account</button>
+                            <button onClick={() => setEditingMode(true) } className="btn">Edit</button>
                           </>)}
                         /> }
       </div>

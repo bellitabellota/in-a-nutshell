@@ -117,7 +117,7 @@ function Chat() {
               <div className={styles.trixContainer}>
                 <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
               </div>
-              <button type="submit" className={styles.sendButton} onClick={sendMessageHandler}>
+              <button type="submit" className={`${styles.sendButton} btn`} onClick={sendMessageHandler}>
                 <img src={SendIcon} alt="Send" />
               </button>
             </form>

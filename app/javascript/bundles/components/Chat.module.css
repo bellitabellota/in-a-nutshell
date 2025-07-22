@@ -112,25 +112,17 @@
   overflow-y: auto;
 }
 
-.sendButton{
+.chatContainer .sendButton{
   border-radius: 2rem;
   padding: 0.75rem;
-  border:none;
-  background-color: var(--dark-orange);
 
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.5);
   flex-shrink: 0;
-  cursor: pointer;
-  transition: background-color 0.3s ease, box-shadow 0.15s;
 
   margin-right: 2px;
 }
 
-.sendButton:hover {
-  background-color: var(--intense-yellow);
-}
-
-.sendButton:active {
+.chatContainer .sendButton:active {
   box-shadow: 1px 1px 4px rgba(0, 0, 0, 0.3);
 }
 
