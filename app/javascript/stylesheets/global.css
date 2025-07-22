@@ -20,6 +20,8 @@
 
   --dark-bg-color:rgba(37, 51, 60, 0.9);
   --light-bg-color: rgb(72, 55, 20);
+
+  --shadow: 1px 1px 3px rgba(0, 0, 0, 0.4);
 }
 
 h1, h2, h3, h4, h5, figure, p, ol, ul {
