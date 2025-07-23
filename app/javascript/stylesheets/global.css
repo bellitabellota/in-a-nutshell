@@ -90,6 +90,49 @@ body {
   transform: translateX(-50%);
 }
 
+.flash-message {
+  position:absolute;
+  top: 1vw;
+  left: 50vw;
+  transform: translateX(-50%);
+  padding: calc(5px + 0.25vw);
+  border-radius: 5px;
+
+  display: flex;
+  gap: 5px;
+
+  font-size: var(--S-font-size);
+  z-index: 11;
+}
+
+.notice {
+  background-color: rgb(238, 255, 238);
+  border: 2px solid rgb(153, 170, 153);
+  color: rgb(153, 170, 153);
+}
+
+.alert {
+  background-color: rgb(255, 238, 238);
+  border: 2px solid rgb(170, 102, 102);
+  color: rgb(170, 102, 102);
+}
+
+.alertClose {
+  margin-left: auto;
+  font-size: 0.75rem;
+  padding: 0.25rem;
+  cursor: pointer;
+}
+
+.alertCheckbox {
+  display: none;
+}
+
+/* With the siblings selector a flash-message directly following a checked checkbox can be hidden */
+.alertCheckbox:checked + .flash-message  {
+  display: none;
+}
+
 .app-container {
   margin-left: auto;
   margin-right: auto;

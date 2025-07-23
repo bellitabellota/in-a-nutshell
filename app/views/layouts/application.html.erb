@@ -20,8 +20,21 @@
 
   <body>
     <div class="site-bg">
-      <p class="notice"><%= notice %></p>
-      <p class="alert"><%= alert %></p>
+      <% if notice.present? || alert.present? %>
+        <% type_class = notice.present? ? "notice" : "alert" %>
+        <input type="checkbox" class="alertCheckbox" id="alertToggle" />
+
+        <div class="flash-message  <%= type_class %>">
+          <% if notice.present? %>
+            <p class="notice-message"><%= notice %></p>
+          <% end %>
+          <% if alert.present? %>
+            <p class="alert-message"><%= alert %></p>
+          <% end %>
+          <label for="alertToggle" class="alertClose">X</label>
+        </div>
+      <% end %>
+
       <%= yield %>
     </div>
   </body>
