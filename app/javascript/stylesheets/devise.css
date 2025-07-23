@@ -11,6 +11,20 @@
   padding: calc(10px + 1vw);
   border-radius: 10px;
   border: calc(2px + 0.15vw) solid var(--primary-orange);
+  max-width: 650px;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: calc(20px + 2vw);
+}
+
+.devise-content .image-container {
+  width: calc(200px + 4.5vw);
+}
+
+.devise-content img {
+  object-fit: contain;
 }
 
 .devise-main h2 {
@@ -50,4 +64,11 @@
 
 .devise-main a:visited {
   color: var(--middle-dark-grey);
+}
+
+@media (max-width: 600px) {
+  .devise-content{
+    flex-direction: column;
+    gap: 15px;
+  }
 }
