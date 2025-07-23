@@ -76,6 +76,7 @@ body {
   filter: blur(70px);
   mix-blend-mode: lighten;
   opacity: 1;
+  z-index: -1;
 }
 
 .site-bg::before {
@@ -139,7 +140,6 @@ body {
   width: fit-content;
   padding-top: 5vh;
   position: relative;
-  z-index: 10;
 }
 
 .pre-main-container {
