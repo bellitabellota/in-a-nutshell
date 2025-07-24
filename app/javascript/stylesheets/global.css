@@ -49,9 +49,11 @@ p {
   font-size: var(--M-font-size);
 }
 
-body {
-  height: 100vh;
-  overflow:hidden;
+html, body, #root {
+  /* Avoid window scroll on mobile */
+  height: 100%;
+  margin: 0;
+  overflow: hidden; 
 }
 
 .site-bg {
@@ -188,7 +190,8 @@ main {
   border-top-right-radius: 10px;
   border-top-left-radius: 10px;
   width: clamp(300px, 75vw, 1250px);
-  height: 75vh;
+  /* Avoid viewport jumps on mobile */
+  height: 75dvh;
 }
 
 nav {
