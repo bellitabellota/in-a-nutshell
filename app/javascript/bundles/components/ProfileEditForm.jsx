@@ -21,7 +21,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
     const formData = new FormData();
 
     formData.append("profile[name]", nameInput);
-    formData.append("profile[info]", infoText);
+    formData.append("profile[info]", (!infoText || infoText.trim() === "") ? "" : infoText);
 
     if(selectedFile) {
       formData.append("profile[picture]", selectedFile, selectedFile.name);

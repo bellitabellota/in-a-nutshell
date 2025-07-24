@@ -23,7 +23,10 @@ class Api::V1::ProfilesController < ApplicationController
       return
     end
 
-    if profile.update(profile_params)
+    cleaned_params = profile_params.to_h
+    cleaned_params["info"] = nil if cleaned_params["info"].blank?
+
+    if profile.update(cleaned_params)
       render json: {
         id: profile.id,
         name: profile.name,
