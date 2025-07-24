@@ -10,15 +10,19 @@ function ContactList({currentChatId}) {
   console.log(contacts)
   return (
     <div className={styles.contactList}>
-      {contacts.map((contact) => (
-        <Link to={`/chats/${contact.chatId}`} key={contact.id}>
-          <div className={`${styles.contactContainer} ${currentChatId === contact.chatId ? styles.isOpen : ""}`}>
-            <img src={contact.profile.picture || defaultProfilePicture} className={styles.profilePicture} alt="Profile" />
-            <p className={styles.contactName}>{contact.profile.name}</p>
-            <p className={styles.latestActivity}>{contact.lastActivity? formatContactListDate(contact.lastActivity): ""}</p>
-          </div>
-        </Link>
-      ))}
+      {contacts.length === 0 ? 
+        <p>You have no contacts yet.</p> 
+        :
+        contacts.map((contact) => (
+          <Link to={`/chats/${contact.chatId}`} key={contact.id}>
+            <div className={`${styles.contactContainer} ${currentChatId === contact.chatId ? styles.isOpen : ""}`}>
+              <img src={contact.profile.picture || defaultProfilePicture} className={styles.profilePicture} alt="Profile" />
+              <p className={styles.contactName}>{contact.profile.name}</p>
+              <p className={styles.latestActivity}>{contact.lastActivity? formatContactListDate(contact.lastActivity): ""}</p>
+            </div>
+          </Link>
+        ))
+      }
     </div>
   );
 }
