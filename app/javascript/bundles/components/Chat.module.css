@@ -12,6 +12,7 @@
 .listContainer {
   transition: flex-basis 1.75s ease-in;
   flex-basis: 30%; /* If performance becomes an issue, remember that animating flex-basis triggers layout calculations which can be expensive. */
+  overflow-y: auto;
 }
 
 .listContainerExpanded {
