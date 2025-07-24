@@ -9,7 +9,8 @@ function Contacts() {
   const [searchedProfile, setSearchedProfile]= useState(undefined);
   const {contacts, setContacts} = useContext(ContactsContext)
 
-  const searchHandler = () => {
+  const searchHandler = (e) => {
+    e.preventDefault();
     const searchedToken = tokenInputRef.current.value.trim();
 
     if (!searchedToken) {
@@ -69,10 +70,10 @@ function Contacts() {
     <main className={styles.mainContacts}>
       <NavBar />
       <div className={`${styles.contentContacts} pattern-bg`}>
-        <div className={styles.searchBarContainer}>
-          <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token"/>
-          <button onClick={searchHandler} className="btn">Search</button>
-        </div>
+        <form className={styles.searchBarForm} onSubmit={searchHandler}>
+          <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token" />
+          <button type="submit" className="btn">Search</button>
+        </form>
         <div className={styles.searchResultContainer}>
           {searchedProfile && <ProfileCard profile={searchedProfile} renderActions={() => (
             isConnected ? <p className={styles.connected}>Connected</p> : <button onClick={connectHandler} className="btn">Connect</button>

@@ -13,7 +13,7 @@
   overflow: hidden;
 }
 
-.searchBarContainer{
+.searchBarForm{
   padding: 20px 10px 10px 10px;
   
   display: flex;
@@ -23,7 +23,7 @@
   flex-wrap: wrap;
 }
 
-.searchBarContainer > input {
+.searchBarForm > input {
   padding: 0.25rem 0.5rem;
   border: 1px solid var(--intense-yellow);;
   text-align: center;
@@ -31,7 +31,7 @@
   font-size: var(--M-font-size);
 }
 
-.searchBarContainer > button {
+.searchBarForm > button {
   border-radius: 1rem;
   font-size: var(--M-font-size);
   flex-shrink: 0;
