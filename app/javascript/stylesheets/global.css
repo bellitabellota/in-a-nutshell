@@ -93,7 +93,7 @@ body {
 
 .flash-message {
   position:absolute;
-  top: 1vw;
+  top: calc(10px + 1vw);
   left: 50vw;
   transform: translateX(-50%);
   padding: calc(5px + 0.25vw);
