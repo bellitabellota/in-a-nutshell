@@ -17,6 +17,7 @@ class HomepageController < ApplicationController
           picture: contact.profile.picture.attached? ? url_for(contact.profile.picture) : nil
         },
         chatId: chat.id,
+        chatCreationDate: chat.created_at,
         lastActivity: chat.messages.maximum(:created_at)
       }
     end
