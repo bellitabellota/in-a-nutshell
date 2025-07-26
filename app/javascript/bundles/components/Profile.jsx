@@ -1,10 +1,10 @@
 import NavBar from "./NavBar";
 import { useContext, useState } from "react";
-import CurrentUserContext from "./contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import ProfileCard from "./ProfileCard";
 import ProfileEditForm from "./ProfileEditForm";
 import * as styles from "./Profile.module.css"
-import ContactsContext from "./contexts/ContactsContext";
+import ContactsContext from "../../contexts/ContactsContext";
 
 function Profile() {
   const {currentUser, setCurrentUser} = useContext(CurrentUserContext);

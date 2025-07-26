@@ -1,5 +1,5 @@
 import { useState, useContext  } from "react";
-import CurrentUserContext from "./contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import * as styles from "./ProfileEditForm.module.css"
 import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 

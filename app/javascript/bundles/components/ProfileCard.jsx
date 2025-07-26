@@ -1,7 +1,7 @@
 import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 import * as styles from "./ProfileCard.module.css"
-import CurrentUserContext from "./contexts/CurrentUserContext";
-import ContactsContext from "./contexts/ContactsContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
+import ContactsContext from "../../contexts/ContactsContext";
 import { useContext } from "react";
 
 function ProfileCard ({profile, renderActions}) {

@@ -1,5 +1,5 @@
 import { useEffect, useContext } from "react";
-import { CableContext } from "../components/contexts/cable";
+import { CableContext } from "../../contexts/cable";
 
 const useChatChannel = (paramsChatId, setMessagesInChat, setContacts) => {
 

@@ -1,19 +1,19 @@
 import { useParams } from "react-router-dom";
 import NavBar from "./NavBar";
 import useChat from "../customHooks/useChat";
-import { CableContext } from "./contexts/cable";
+import { CableContext } from "../../contexts/cable";
 import { useContext, useEffect, useRef, useState, useLayoutEffect } from "react";
 import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
 import useChatChannel from "../customHooks/useChatChannel";
 import useSendMessage from "../customHooks/useSendMessage";
 import * as styles from "./Chat.module.css";
-import CurrentUserContext from "./contexts/CurrentUserContext";
+import CurrentUserContext from "../../contexts/CurrentUserContext";
 import formatDate from "../helpers/formatDate";
 import { useMediaQuery } from "react-responsive";
 import ContactList from "./ContactList";
 import SendIcon from "../../images/send_icon.svg"
-import ContactsContext from "./contexts/ContactsContext";
+import ContactsContext from "../../contexts/ContactsContext";
 import useTrixSendOnEnter from "../customHooks/useTrixSendOnEnter";
 
 function Chat() {

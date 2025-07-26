@@ -1,7 +1,7 @@
 import { useRef, useState, useContext, useEffect } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
-import ContactsContext from "./contexts/ContactsContext";
+import ContactsContext from "../../contexts/ContactsContext";
 import * as styles from "./Contacts.module.css"
 
 function Contacts() {
