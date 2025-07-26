@@ -50,6 +50,7 @@ group :development, :test do
   gem "rspec-rails", "~> 8.0.0"
   gem "capybara"
   gem "webdrivers"
+  gem "factory_bot_rails"
 end
 
 gem "shakapacker", "= 8.3"

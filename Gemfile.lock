@@ -130,6 +130,11 @@ GEM
     erb (5.0.1)
     erubi (1.13.1)
     execjs (2.10.0)
+    factory_bot (6.5.4)
+      activesupport (>= 6.1.0)
+    factory_bot_rails (6.5.0)
+      factory_bot (~> 6.5)
+      railties (>= 6.1.0)
     ffi (1.17.0-aarch64-linux-gnu)
     ffi (1.17.0-aarch64-linux-musl)
     ffi (1.17.0-arm-linux-gnu)
@@ -391,6 +396,7 @@ DEPENDENCIES
   capybara
   debug
   devise (~> 4.9)
+  factory_bot_rails
   image_processing (~> 1.2)
   jbuilder
   pg (~> 1.1)
