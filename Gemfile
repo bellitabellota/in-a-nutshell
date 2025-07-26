@@ -48,6 +48,8 @@ end
 
 group :development, :test do
   gem "rspec-rails", "~> 8.0.0"
+  gem "capybara"
+  gem "webdrivers"
 end
 
 gem "shakapacker", "= 8.3"
