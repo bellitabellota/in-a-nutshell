@@ -1,21 +1,71 @@
 require "rails_helper"
 
 RSpec.describe "Request authentication to visit site", type: :system do
-  context "when unauthenticated users visit homepage" do
-    it "they are redirected to log in page" do
-      visit root_path
-      expect(page).to have_content "Log in"
+  context "when unauthenticated users" do
+    context "try to visit homepage" do
+      it "they are redirected to log in page" do
+        visit root_path
+        expect(page).to have_content "Log in"
+      end
+    end
+
+    context "try to visit an API endpoint e.g. profile search" do
+      it "they are redirected to log in page" do
+        unauthenticated_user =  FactoryBot.create(:user)
+        connect_token = unauthenticated_user.profile.connect_token
+
+        visit "/api/v1/profiles/search?token=#{connect_token}"
+        expect(page).to have_content "Log in"
+      end
+    end
+
+    context "try to access an endpoint of the client side router e.g. '/contacts'" do
+      it "they are redirected to log in page" do
+        visit "/contacts"
+
+        expect(page).to have_content "Log in"
+      end
     end
   end
 
-  context "when users authenticate and visit homepage" do
-    it "they are directed to the root page" do
-      user = FactoryBot.create(:user)
+  context "when authenticated users" do
+    let(:authenticated_user) { FactoryBot.create(:user) }
 
-      login_as user
-      visit root_path
+    before do
+      login_as authenticated_user
+    end
 
-      expect(page).to have_content "My Profile"
+    context "visit homepage" do
+      it "they are directed to the root page" do
+        visit root_path
+
+        expect(page).to have_content "My Profile"
+      end
+    end
+
+    context "try to visit an API endpoint e.g. profile search" do
+      it "they are granted access receiving a json response" do
+        connect_token = authenticated_user.profile.connect_token
+
+        visit "/api/v1/profiles/search?token=#{connect_token}"
+
+        raw_json = find("pre").text
+        json = JSON.parse(raw_json)
+
+        expect(json).to include(
+          "id" => authenticated_user.profile.id,
+          "name" => authenticated_user.email,
+          "connectToken" => connect_token
+        )
+      end
+    end
+
+    context "try to access an endpoint of the client side router e.g. '/contacts'" do
+      it "they are granted access" do
+        visit "/contacts"
+
+        expect(page).to have_content "Search"
+      end
     end
   end
 end
