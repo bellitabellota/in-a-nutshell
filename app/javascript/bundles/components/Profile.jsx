@@ -31,7 +31,7 @@ function Profile() {
       return response.json();
     })
     .then((data) => {
-      alert(data.message);
+      console.log(data.message);
       setCurrentUser({id: undefined, profile:{connectToken: ""}});
       setContacts([]);
       window.location.href = "/users/sign_in";
