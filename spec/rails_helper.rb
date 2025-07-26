@@ -88,6 +88,9 @@ RSpec.configure do |config|
     # driven_by :selenium_chrome_headless
   end
 
+  # Including Warden Test Helper:
+  config.include Warden::Test::Helpers
+
   # Filter lines from Rails gems in backtraces.
   config.filter_rails_from_backtrace!
   # arbitrary gems may also be filtered via:
