@@ -7,13 +7,20 @@ import formatContactListDate from "../helpers/formatContactListDate";
 
 function ContactList({currentChatId}) {
   const {contacts} = useContext(ContactsContext);
-  console.log(contacts)
+
+  const sortedContacts = [...contacts].sort((a, b) => {
+    const dateA = new Date(a.lastActivity || a.chatCreationDate);
+    const dateB = new Date(b.lastActivity || b.chatCreationDate);
+    // https://masteringjs.io/tutorials/fundamentals/sort-by-date
+    return dateB - dateA; // sorts in descending order
+  });
+
   return (
     <div className={styles.contactList}>
-      {contacts.length === 0 ? 
+      {sortedContacts.length === 0 ? 
         <p>You have no contacts yet.</p> 
         :
-        contacts.map((contact) => (
+        sortedContacts.map((contact) => (
           <Link to={`/chats/${contact.chatId}`} key={contact.id}>
             <div className={`${styles.contactContainer} ${currentChatId === contact.chatId ? styles.isOpen : ""}`}>
               <img src={contact.profile.picture || defaultProfilePicture} className={styles.profilePicture} alt="Profile" />
