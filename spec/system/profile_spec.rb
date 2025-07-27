@@ -76,4 +76,18 @@ RSpec.describe "Profile", type: :system do
       end
     end
   end
+
+  context "when users try to use a profile name that already exists" do
+    it "alerts'Error: Name has already been taken (HTTP status: 422)'" do
+      FactoryBot.create(:user, email: "testuser2@mail.com")
+
+      click_button "Edit"
+      fill_in "Name", with: "testuser2@mail.com"
+
+      # although there is no traditional expect clause the test will throw an error if the alert does not appear
+      accept_alert("Error: Name has already been taken (HTTP status: 422)") do
+        click_button "Update"
+      end
+    end
+  end
 end
