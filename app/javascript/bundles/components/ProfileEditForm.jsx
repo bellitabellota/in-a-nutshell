@@ -37,7 +37,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
     .then((response) =>{
       if (!response.ok) {
         return response.json().then((errorData) => {
-          throw new Error(`${errorData.error} (HTTP status: ${response.status})` || `HTTP Error ${response.status}: ${response.statusText}`);
+          throw new Error(`${errorData.error} (HTTP status: ${response.status})`);
         });
       }
       return response.json();
