@@ -17,7 +17,7 @@ function App(reactProps) {
   const [contacts, setContacts] = useState(reactProps.contacts);
 
   const logoutHandler = () => {
-    const token = document.querySelector('meta[name="csrf-token"]').content
+    const token = document.querySelector('meta[name="csrf-token"]')?.content || "test-csrf-token";
     fetch("/users/sign_out", {
       method: "DELETE",
       headers: {

@@ -67,5 +67,14 @@ RSpec.describe "Request authentication to visit site", type: :system do
         expect(page).to have_content "Search"
       end
     end
+
+    context "click the logout button" do
+      it "logs them out and redirects to login page" do
+        visit root_path
+        find("img.logout-icon").click # thanks to event bubbling this button can easily be clicked
+
+        expect(page).to have_content("Log in")
+      end
+    end
   end
 end
