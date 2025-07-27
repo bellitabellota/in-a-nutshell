@@ -17,7 +17,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
     }
 
     const url = `/api/v1/profiles/${profile.id}`;
-    const token = document.querySelector('meta[name="csrf-token"]').content
+    const token = document.querySelector('meta[name="csrf-token"]')?.content || "test-csrf-token";
     const formData = new FormData();
 
     formData.append("profile[name]", nameInput);

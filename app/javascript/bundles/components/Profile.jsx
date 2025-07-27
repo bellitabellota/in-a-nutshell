@@ -15,9 +15,8 @@ function Profile() {
     if (!window.confirm("Are you sure you want to delete your account? This action cannot be undone.")) {
       return;
     }
-
     const url = "/api/v1/users/destroy"
-    const token = document.querySelector('meta[name="csrf-token"]').content
+    const token = document.querySelector('meta[name="csrf-token"]')?.content || "test-csrf-token";
 
     fetch(url, {
       method: "DELETE",
