@@ -12,7 +12,7 @@ const ProfileEditForm = ({profile, setEditingMode}) => {
 
   const updateHandler = () => {
     if (!nameInput.trim()) {
-      alert("A unique name is required.");
+      alert("A name must be entered.");
       return;
     }
 

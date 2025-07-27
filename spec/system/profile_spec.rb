@@ -52,4 +52,28 @@ RSpec.describe "Profile", type: :system do
       expect(page).to have_content("Info: I love testing.")
     end
   end
+
+  context "when users try to edit their name to an empty string" do
+    it "alerts 'A name must be entered.'" do
+      click_button "Edit"
+      fill_in "Name", with: ""
+
+      # although there is no traditional expect clause the test will throw an error if the alert does not appear
+      accept_alert("A name must be entered.") do
+        click_button "Update"
+      end
+    end
+  end
+
+  context "when users try to edit their name to an multiple empty spaces" do
+    it "alerts 'A name must be entered.'" do
+      click_button "Edit"
+      fill_in "Name", with: ""
+
+      # although there is no traditional expect clause the test will throw an error if the alert does not appear
+      accept_alert("A name must be entered.") do
+        click_button "Update"
+      end
+    end
+  end
 end
