@@ -6,7 +6,9 @@ class Api::V1::UserContactsController < ApplicationController
 
     if user_contact.save
       contact = User.includes(:profile).where(id: contact_id).first
-      chat = Chat.find_by(user_a_id: current_user.id, user_b_id: contact.id)
+
+      user_ids = [ current_user.id, contact.id ].sort
+      chat = Chat.find_by(user_a_id: user_ids[0], user_b_id: user_ids[1])
 
       contact_with_profile_and_chat_info = {
         id: contact.id,
