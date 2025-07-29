@@ -3,10 +3,16 @@ class HomepageController < ApplicationController
     contact_ids = current_user.contacts.pluck(:id)
     contacts = User.includes(profile: [ picture_attachment: :blob ]).where(id: contact_ids)
 
+    current_user_chats = current_user.chats.includes(:messages) # actually I only need last message date
+
+    # index_by converts the array of current_user_chats into an hash with '[ chat.user_a_id, chat.user_b_id ]' being the key
+    # https://api.rubyonrails.org/v7.0.0/classes/Enumerable.html#method-i-index_by
+    indexed_chats = current_user_chats.index_by { |chat| [ chat.user_a_id, chat.user_b_id ].sort }
+
     contacts_with_profile_and_chat_info = contacts.map do |contact|
       user_ids = [ current_user.id, contact.id ].sort
 
-      chat = Chat.find_by(user_a_id: user_ids[0], user_b_id: user_ids[1])
+      chat =  indexed_chats[user_ids]
 
       {
         id: contact.id,
