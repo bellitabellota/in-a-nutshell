@@ -5,7 +5,7 @@ class Api::V1::UserContactsController < ApplicationController
     user_contact = UserContact.new(user_id: current_user.id, contact_id: contact_id)
 
     if user_contact.save
-      contact = User.includes(:profile).where(id: contact_id).first
+      contact = User.find(contact_id)
 
       # Remember the Chat model will automatically sort the ids before validation when creating the chat entry
       chat = Chat.find_by(user_a_id: current_user.id, user_b_id: contact.id) ||
