@@ -3,8 +3,9 @@ import { useEffect} from "react";
 const useSendMessage = (paramsChatId, newMessage, setNewMessage, trixRef) => {
   useEffect(()=> {
     if (!newMessage) return
+
     const url = `/api/v1/chats/${paramsChatId}/messages`
-    const token = document.querySelector('meta[name="csrf-token').content
+    const token = document.querySelector('meta[name="csrf-token"]')?.content || "test-csrf-token";
     const body = {content: newMessage}
 
     fetch(url, {
