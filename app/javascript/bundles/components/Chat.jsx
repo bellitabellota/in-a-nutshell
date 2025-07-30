@@ -7,6 +7,7 @@ import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
 import useChatChannel from "../customHooks/useChatChannel";
 import useSendMessage from "../customHooks/useSendMessage";
+import useScrollOnNewMessage from "../customHooks/useScrollOnNewMessage";
 import * as styles from "./Chat.module.css";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
 import formatDate from "../helpers/formatDate";
@@ -30,33 +31,18 @@ function Chat() {
   const isDesktop = useMediaQuery({ minWidth: 1024 });
 
   const lastMessageRef = useRef(null);
-  const messageDisplay= useRef(null);
-  const firstLoadForChat = useRef(true);
+  const messageDisplayRef= useRef(null);
+  const firstLoadForChatRef = useRef(true);
+
+  useScrollOnNewMessage(messagesInChat, lastMessageRef, messageDisplayRef, firstLoadForChatRef)
 
   useEffect(() => {
-    if (!lastMessageRef.current || !messageDisplay.current) return;
-  
-    const container = messageDisplay.current;
-
-    if (firstLoadForChat.current) {
-      firstLoadForChat.current = false;
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-      return;
-    }
-  
-    const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 200;
-  
-    if (isNearBottom) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
-    }
-  }, [messagesInChat]);
-
-  useEffect(() => {
-    firstLoadForChat.current = true;
+    firstLoadForChatRef.current = true;
   }, [params.chatId]);
 
   useChatChannel(params.chatId, setMessagesInChat, setContacts)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
+
 
   function sendMessageHandler (event) {
     event.preventDefault();
@@ -109,7 +95,7 @@ function Chat() {
         )}
         
         <div className={`${styles.chatContainer} ${(isDesktop && listExpanded) ? styles.chatContainerNone : ""}`}>
-          <div className={`${styles.messageDisplay} pattern-bg`} ref={messageDisplay}>
+          <div className={`${styles.messageDisplay} pattern-bg`} ref={messageDisplayRef}>
             { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
           </div>
           <div className={styles.messageFormContainer}>
