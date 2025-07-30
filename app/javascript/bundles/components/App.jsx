@@ -38,7 +38,7 @@ function App(reactProps) {
     <div className="app-container">
       <div className="pre-main-container">
         <img src={horizontalLogo} className="horizontal-logo"/>
-        <button onClick={logoutHandler}><img src={logoutIcon} className="logout-icon"/></button>
+        <button onClick={logoutHandler}><img src={logoutIcon} className="logout-icon" alt="Logout"/></button>
       </div>
       <CurrentUserContext.Provider value={{ currentUser, setCurrentUser}}>
         <ContactsContext.Provider value={{ contacts, setContacts }}>
