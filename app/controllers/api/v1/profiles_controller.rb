@@ -1,4 +1,6 @@
 class Api::V1::ProfilesController < ApplicationController
+  include ActionView::Helpers::SanitizeHelper
+
   def search
     profile = Profile.find_by(connect_token: params[:token])
 
@@ -23,8 +25,11 @@ class Api::V1::ProfilesController < ApplicationController
       return
     end
 
-    cleaned_params = profile_params.to_h
-    cleaned_params["info"] = nil if cleaned_params["info"].blank?
+    tags = %w[a acronym b strong i em li ul ol h1 h2 h3 h4 h5 h6 blockquote br cite sub sup ins p]
+
+    cleaned_params = profile_params
+    cleaned_params[:name] = sanitize(cleaned_params[:name], tags: [], attributes: [])
+    cleaned_params[:info] = cleaned_params[:info].blank? ? nil : sanitize(cleaned_params[:info], tags: tags, attributes: %w[href title])
 
     if profile.update(cleaned_params)
       render json: {
