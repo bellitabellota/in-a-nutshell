@@ -13,16 +13,16 @@ require "capybara/rails"
 
 require "selenium-webdriver"
 
-module ::Selenium::WebDriver::Remote
-  class Bridge
-    alias old_execute execute
+# module ::Selenium::WebDriver::Remote
+#  class Bridge
+#    alias old_execute execute
 
-    def execute(*args)
-      sleep(0.5)
-      old_execute(*args)
-    end
-  end
-end
+#    def execute(*args)
+#      sleep(0.5)
+#      old_execute(*args)
+#    end
+#  end
+# end
 
 # Requires supporting ruby files with custom matchers and macros, etc, in
 # spec/support/ and its subdirectories. Files matching `spec/**/*_spec.rb` are
@@ -84,8 +84,8 @@ RSpec.configure do |config|
   # config.infer_spec_type_from_file_location!
   #
   config.before(:each, type: :system) do
-    driven_by :selenium_chrome
-    # driven_by :selenium_chrome_headless
+    # driven_by :selenium_chrome
+    driven_by :selenium_chrome_headless
   end
 
   # Including Warden Test Helper:
