@@ -31,7 +31,7 @@ function Chat() {
   const [newMessage, setNewMessage] = useState();
 
   const {currentUser} = useContext(CurrentUserContext);
-  const { contacts, setContacts } = useContext(ContactsContext);
+  const { setContacts } = useContext(ContactsContext);
 
   const {error, isLoading } = useChat(params.chatId, setMessagesInChat)
 
@@ -46,7 +46,6 @@ function Chat() {
 
   useChatChannel(params.chatId, setMessagesInChat, setContacts)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
-
 
   function sendMessageHandler (event) {
     event.preventDefault();
@@ -88,7 +87,7 @@ function Chat() {
             { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
           </div>
           <div className={styles.messageFormContainer}>
-            <form action="" className={styles.messageForm}>
+            <form className={styles.messageForm}>
               <div className={styles.trixContainer}>
                 <ReactTrixRTEInput isRailsDirectUpload={true} trixInputRef={trixRef}/>
               </div>
@@ -100,7 +99,6 @@ function Chat() {
         </div>
       </div>
     </main>
-    
   )
 }
 
