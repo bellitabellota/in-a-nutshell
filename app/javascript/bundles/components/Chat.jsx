@@ -12,6 +12,7 @@ import useChatChannel from "../customHooks/useChatChannel";
 import useSendMessage from "../customHooks/useSendMessage";
 import useTrixSendOnEnter from "../customHooks/useTrixSendOnEnter";
 import useChat from "../customHooks/useChat";
+import useTriggerScrollOnChatSwitch from "../customHooks/useTriggerScrollOnChatSwitch"
 import useScrollOnNewMessage from "../customHooks/useScrollOnNewMessage";
 
 import ContactsContext from "../../contexts/ContactsContext";
@@ -37,13 +38,10 @@ function Chat() {
 
   const lastMessageRef = useRef(null);
   const messageDisplayRef= useRef(null);
+
   const firstLoadForChatRef = useRef(true);
-
+  useTriggerScrollOnChatSwitch(firstLoadForChatRef, params.chatId)
   useScrollOnNewMessage(messagesInChat, lastMessageRef, messageDisplayRef, firstLoadForChatRef)
-
-  useEffect(() => {
-    firstLoadForChatRef.current = true;
-  }, [params.chatId]);
 
   useChatChannel(params.chatId, setMessagesInChat, setContacts)
   useSendMessage(params.chatId, newMessage, setNewMessage, trixRef)
