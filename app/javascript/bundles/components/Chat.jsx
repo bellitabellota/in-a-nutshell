@@ -84,7 +84,7 @@ function Chat() {
         
         <div className={`${styles.chatContainer} ${(isDesktop && listExpanded) ? styles.chatContainerNone : ""}`}>
           <div className={`${styles.messageDisplay} pattern-bg`} ref={messageDisplayRef}>
-            { isLoading? "Chat is loading ..." : (error != null ? error.message : messages)}
+            { isLoading? "Chat is loading ..." : (error ? error.message : messages)}
           </div>
           <div className={styles.messageFormContainer}>
             <form className={styles.messageForm}>
