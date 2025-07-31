@@ -14,6 +14,7 @@ import useTrixSendOnEnter from "../customHooks/useTrixSendOnEnter";
 import useChat from "../customHooks/useChat";
 import useTriggerScrollOnChatSwitch from "../customHooks/useTriggerScrollOnChatSwitch"
 import useScrollOnNewMessage from "../customHooks/useScrollOnNewMessage";
+import useAutoCollapseContactList from "../customHooks/useAutoCollapseContactList";
 
 import ContactsContext from "../../contexts/ContactsContext";
 import CurrentUserContext from "../../contexts/CurrentUserContext";
@@ -22,6 +23,7 @@ import * as styles from "./Chat.module.css";
 import SendIcon from "../../images/send_icon.svg";
 
 import formatDate from "../helpers/formatDate";
+
 
 function Chat() {
   const params = useParams();
@@ -75,16 +77,7 @@ function Chat() {
     </div>)
   })
 
-  const [listExpanded, setListExpanded] = useState(true);
-  const isFirstLoadRef = useRef(true);
-  useEffect(() => {
-    if(!isDesktop) return;
-    if(!isFirstLoadRef.current) return;
-
-    isFirstLoadRef.current = false;
-    const timer = setTimeout(() => setListExpanded(false), 250);
-    return () => clearTimeout(timer);
-  }, [isDesktop]);
+  const { listExpanded } = useAutoCollapseContactList(isDesktop);
 
   return (
     <main className={styles.mainChat}>
