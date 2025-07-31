@@ -24,7 +24,6 @@ import SendIcon from "../../images/send_icon.svg";
 
 import formatDate from "../helpers/formatDate";
 
-
 function Chat() {
   const params = useParams();
   const [messagesInChat, setMessagesInChat] = useState([]);
@@ -56,15 +55,9 @@ function Chat() {
 
   useTrixSendOnEnter(trixRef, sendMessageHandler);
 
-  function stripHtmlComments(htmlString) {
-    return htmlString.replace(/<!--[\s\S]*?-->/g, '');
-  }
-
   const messages = messagesInChat.map((message, index) => {
     const isCurrentUser = message.author === currentUser.id;
     const messageClass = isCurrentUser ? styles.messageCurrentUser : styles.messageContact;
-
-    const cleanedContent = stripHtmlComments(message.contentBody);
 
     const isLastMessage = index === messagesInChat.length - 1;
 
@@ -72,7 +65,7 @@ function Chat() {
     // https://github.com/rails/actiontext/issues/13
     // https://github.com/rails/actiontext/issues/6
     return (<div key={message.id} className={`${styles.message} ${messageClass}`} ref={isLastMessage ? lastMessageRef : null}>
-      <p dangerouslySetInnerHTML={{ __html: cleanedContent }} />
+      <p dangerouslySetInnerHTML={{ __html: message.contentBody }} />
       <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
   })
