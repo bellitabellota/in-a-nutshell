@@ -15,10 +15,13 @@ const useSendMessage = (paramsChatId, newMessage, setNewMessage, trixRef) => {
         "X-CSRF-Token": token
       }, 
       body: JSON.stringify(body)
-    })
-    setNewMessage(null);
-    trixRef.current.editor.element.innerHTML = "";
-
+    }).then((response) =>{
+      if(!response.ok) {
+        throw new Error(`${response.statusText} (HTTP status: ${response.status})`);
+      }
+      setNewMessage(null);
+      trixRef.current.editor.element.innerHTML = "";
+    }).catch((error) => alert(error))
   }, [newMessage])
 }
 
