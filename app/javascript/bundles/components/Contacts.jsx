@@ -1,19 +1,19 @@
-import { useRef, useState, useContext, useEffect } from "react";
+import { useState, useContext, useEffect } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import ContactsContext from "../../contexts/ContactsContext";
 import * as styles from "./Contacts.module.css"
 
 function Contacts() {
-  const tokenInputRef = useRef(null);
+  const [searchToken, setSearchToken] = useState("");
   const [searchedProfile, setSearchedProfile]= useState(undefined);
   const {contacts, setContacts} = useContext(ContactsContext)
 
   const searchHandler = (e) => {
     e.preventDefault();
-    const searchedToken = tokenInputRef.current.value.trim();
+    const searchedToken = searchToken.trim();
 
-    if (!searchedToken) {
+    if (searchedToken === "") {
       alert("Input field cannot be empty.");
       return;
     }
@@ -31,7 +31,7 @@ function Contacts() {
     }).catch((error) => {
       alert(error)
     }).finally(() => {
-      tokenInputRef.current.value = ``;
+      setSearchToken("");
     })
   }
 
@@ -71,7 +71,7 @@ function Contacts() {
       <NavBar />
       <div className={`${styles.contentContacts} pattern-bg`}>
         <form className={styles.searchBarForm} onSubmit={searchHandler}>
-          <input type="text" ref={tokenInputRef} placeholder="Enter A Connect Token" />
+          <input type="text" value={searchToken} onChange={(e) => setSearchToken(e.target.value)} placeholder="Enter A Connect Token" />
           <button type="submit" className="btn">Search</button>
         </form>
         <div className={styles.searchResultContainer}>
