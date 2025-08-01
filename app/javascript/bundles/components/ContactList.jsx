@@ -1,6 +1,6 @@
 import { Link } from "react-router-dom";
 import * as styles from "./ContactList.module.css";
-import { useContext } from "react";
+import { useContext, useMemo } from "react";
 import ContactsContext from "../../contexts/ContactsContext";
 import defaultProfilePicture from "../../images/default-profile-picture.jpg";
 import formatContactListDate from "../helpers/formatContactListDate";
@@ -8,12 +8,14 @@ import formatContactListDate from "../helpers/formatContactListDate";
 function ContactList({currentChatId}) {
   const {contacts} = useContext(ContactsContext);
 
-  const sortedContacts = [...contacts].sort((a, b) => {
-    const dateA = new Date(a.lastActivity || a.chatCreationDate);
-    const dateB = new Date(b.lastActivity || b.chatCreationDate);
-    // https://masteringjs.io/tutorials/fundamentals/sort-by-date
-    return dateB - dateA; // sorts in descending order
-  });
+  const sortedContacts = useMemo(() => {
+    return [...contacts].sort((a, b) => {
+      const dateA = new Date(a.lastActivity || a.chatCreationDate);
+      const dateB = new Date(b.lastActivity || b.chatCreationDate);
+          // https://masteringjs.io/tutorials/fundamentals/sort-by-date
+      return dateB - dateA; // sorts in descending order
+    });
+  }, [contacts]);
 
   return (
     <div className={styles.contactList}>
