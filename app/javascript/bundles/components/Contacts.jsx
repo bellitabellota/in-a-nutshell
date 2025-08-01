@@ -1,4 +1,4 @@
-import { useState, useContext, useEffect } from "react";
+import { useState, useContext, useMemo } from "react";
 import NavBar from "./NavBar";
 import ProfileCard from "./ProfileCard";
 import ContactsContext from "../../contexts/ContactsContext";
@@ -64,7 +64,9 @@ function Contacts() {
     });
   };
 
-  const isConnected = searchedProfile && contacts.some((contact) => contact.profile.connectToken === searchedProfile.connectToken);
+  const isConnected = useMemo(() => {
+    return searchedProfile && contacts.some((contact) => contact.profile.connectToken === searchedProfile.connectToken);
+  }, [searchedProfile, contacts]);
 
   return( 
     <main className={styles.mainContacts}>
