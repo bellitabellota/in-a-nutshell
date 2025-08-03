@@ -16,9 +16,14 @@ const useScrollOnNewMessage = (messagesInChat, lastMessageRef, messageDisplayRef
   
     const isNearBottom = container.scrollHeight - container.scrollTop - container.clientHeight < 200;
   
+    let timeoutId;
     if (isNearBottom) {
-      lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      timeoutId = setTimeout(()=> {
+        lastMessageRef.current.scrollIntoView({ behavior: "smooth" });
+      }, 50)
     }
+
+    return () => clearTimeout(timeoutId);
   }, [messagesInChat]);
 }
 
