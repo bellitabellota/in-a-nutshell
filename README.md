@@ -77,6 +77,12 @@ Password: _peterpeter_
 https://github.com/user-attachments/assets/2fa2859c-a687-43ae-8bc9-155e58782dcf
 
 
+## Image Sources
+- Default profile piczutr from Vecteezy (https://www.vecteezy.com/vector-art/2534006-social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background )
+- Send icon from seekicon (https://seekicon.com/free-icon/send_12)
+- Logout icon from SVG REPO (https://www.svgrepo.com/svg/67681/logout)
+
+
 
 
 
