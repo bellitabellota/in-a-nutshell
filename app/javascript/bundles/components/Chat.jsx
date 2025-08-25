@@ -4,6 +4,7 @@ import { useMediaQuery } from "react-responsive";
 
 import NavBar from "./NavBar";
 import ContactList from "./ContactList";
+import MessageContent from "./MessageContent";
 
 import Trix from "trix";
 import { ReactTrixRTEInput } from "react-trix-rte";
@@ -60,11 +61,8 @@ function Chat() {
 
     const isLastMessage = index === messagesInChat.length - 1;
 
-    // ActionText & Sanitization:
-    // https://github.com/rails/actiontext/issues/13
-    // https://github.com/rails/actiontext/issues/6
     return (<div key={message.id} className={`${styles.message} ${messageClass}`} ref={isLastMessage ? lastMessageRef : null}>
-      <p dangerouslySetInnerHTML={{ __html: message.contentBody }} />
+      <MessageContent messageBodyContent={message.contentBody} />
       <p className={styles.messageDate}>{ formatDate(message.creationDate) }</p>
     </div>)
   })
