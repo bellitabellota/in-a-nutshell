@@ -4,13 +4,15 @@ This project is my realization of the [final project of TOP's React section](htt
 
 For deployment [Koyeb](https://www.koyeb.com/) was used, the PostgreSQL database is run via [Neon](https://neon.com/) and an Redis via [Upstash](https://upstash.com/).
 
-[Try the app yourself.](https://back-turtle-in-a-nutshell-4f2b4783.koyeb.app/)
-
+___
+ 
+<strong> Try the app yourself: [--> Visit deployed app](https://back-turtle-in-a-nutshell-4f2b4783.koyeb.app/)</strong>
+___
 You can connect with me via the Connect Token _9b43a805c1d55d0a1a2e_.
 
 Or open a second window and log in as demo user Peter:
 
-Email: _peter@mail.com_<br>
+Email: peter@mail.com<br>
 Password: _peterpeter_
 
 ## Features
@@ -75,6 +77,12 @@ Password: _peterpeter_
   
 
 https://github.com/user-attachments/assets/2fa2859c-a687-43ae-8bc9-155e58782dcf
+
+
+## Image Sources
+- Default profile piczutr from Vecteezy (https://www.vecteezy.com/vector-art/2534006-social-media-chatting-online-blank-profile-picture-head-and-body-icon-people-standing-icon-grey-background )
+- Send icon from seekicon (https://seekicon.com/free-icon/send_12)
+- Logout icon from SVG REPO (https://www.svgrepo.com/svg/67681/logout)
 
 
 
