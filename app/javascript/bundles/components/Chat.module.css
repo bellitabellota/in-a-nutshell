@@ -109,7 +109,8 @@
 }
 
 .trixContainer trix-editor {
-  height: 65px;
+  min-height: 65px;
+  max-height: 50vh;
   overflow-y: auto;
 }
 
