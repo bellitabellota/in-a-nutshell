@@ -59,4 +59,4 @@ gem "react_on_rails", "14.2.1"
 
 gem "devise", "~> 4.9"
 
-gem "redis", "~> 4.0"
+gem "redis", "~> 5.4"
