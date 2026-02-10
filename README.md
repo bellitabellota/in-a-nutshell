@@ -7,13 +7,20 @@ For deployment [Koyeb](https://www.koyeb.com/) was used, the PostgreSQL database
 ___
  
 <strong> Try the app yourself: [--> Visit deployed app](https://back-turtle-in-a-nutshell-4f2b4783.koyeb.app/)</strong>
+
+You can sign up/log in using the below credentials:
+
+```
+testuser@mail.com
+  
+password1!
+```
+
+Connect with me using this token:
+```
+  9b43a805c1d55d0a1a2e
+```
 ___
-You can connect with me via the Connect Token _9b43a805c1d55d0a1a2e_.
-
-Or open a second window and log in as demo user Peter:
-
-Email: peter@mail.com<br>
-Password: _peterpeter_
 
 ## Features
  - Log in / out / Account deletion
