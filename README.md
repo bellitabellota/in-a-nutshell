@@ -73,7 +73,7 @@ Password: _peterpeter_
 
 
 
-- Live demo:
+- Demo Video:
   
 
 https://github.com/user-attachments/assets/2fa2859c-a687-43ae-8bc9-155e58782dcf
